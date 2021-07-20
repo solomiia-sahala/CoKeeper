@@ -1,12 +1,15 @@
+import '../styles/SocialIcon.scss';
+
 type Icon = {
+    href: string,
     src: string
     name: string,
 }
 
-const SocialIcon = ({ src, name }: Icon) => {
+const SocialIcon = ({ href, src, name }: Icon) => {
     const path = '/images/';
     return (
-        <a href="/">
+        <a href={href} target="_blank">
             <img src={`${path}${src}`} alt={name} />
         </a>
     )
