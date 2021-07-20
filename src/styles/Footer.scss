@@ -1,0 +1,17 @@
+footer {
+  background-color: #2b7a78;
+  color: #feffff;
+  height: 90px;
+  font-size: 26px;
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    div {
+      margin-left: 20px;
+    }
+  }
+}
