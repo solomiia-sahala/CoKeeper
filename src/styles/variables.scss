@@ -10,12 +10,12 @@ $title: "Fira Sans", sans-serif;
 $main-font: "Source Sans Pro", sans-serif;
 
 //font sizes
-$font-size-14-mobile: 14px;
-$font-size-18-mobile: 18px;
-$font-size-24-title-mobile: 24px;
-$font-size-24-desktop: 24px;
-$font-size-26-title-desktop: 26px;
-$font-size-36-desktop: 36px;
+$font-size-s-mobile: 14px;
+$font-size-m-mobile: 18px;
+$font-size-l-title-mobile: 24px;
+$font-size-s-desktop: 24px;
+$font-size-m-title-desktop: 26px;
+$font-size-l-desktop: 36px;
 
 @mixin for-desktop {
     @media screen and (min-width: 768px) {
