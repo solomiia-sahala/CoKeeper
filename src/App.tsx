@@ -5,6 +5,7 @@ import Favorites from './components/Favorites';
 import NewContact from './components/NewContact';
 import ImportCSV from './components/ImportCSV';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/importCSV" component={ImportCSV} />
         </Switch>
       </Router>
+      <Footer/>
     </>
   );
 }
