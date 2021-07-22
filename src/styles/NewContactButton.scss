@@ -1,0 +1,33 @@
+.create-contact-btn {
+  a {
+    text-decoration: none;
+
+    .desktop {
+        display: block;
+        background-color: #feffff;
+        color: #17252a;
+        padding: 10px 32px;
+        border-radius: 30px;
+        cursor: pointer;
+        border: solid 1px #3aafa9;
+    }
+
+    .mobile {
+      display: flex;
+      justify-content: center;
+      background-color: #def2f1;
+      height: 78px;
+      width: 78px;
+      border-radius: 50%;
+      margin-left: auto;
+      position: absolute;
+      top: 96vh;
+      transform: translateY(-100%);
+      left: 43%;
+      
+      img {
+        width: 28px;
+      }
+    }
+  }
+}

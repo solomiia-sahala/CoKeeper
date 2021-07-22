@@ -5,12 +5,14 @@ import Favorites from './components/Favorites';
 import NewContact from './components/NewContact';
 import ImportCSV from './components/ImportCSV';
 import Footer from './components/Footer';
+import NewContactButton from './components/NewContactButton';
 
 import './App.css';
 
 function App() {
   return (
     <>
+  <NewContactButton/>
       <Router>
         <Switch>
           <Route exact path="/" component={Contacts} />

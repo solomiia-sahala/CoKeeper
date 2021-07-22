@@ -9,7 +9,7 @@ type Icon = {
 const SocialIcon = ({ href, src, name }: Icon) => {
     const path = '/images/';
     return (
-        <a href={href} target="_blank">
+        <a href={href} className="icon" target="_blank">
             <img src={`${path}${src}`} alt={name} />
         </a>
     )
