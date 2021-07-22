@@ -11,6 +11,7 @@ import './App.css';
 function App() {
   return (
     <>
+      <NewContact />
       <Router>
         <Switch>
           <Route exact path="/" component={Contacts} />
@@ -19,7 +20,7 @@ function App() {
           <Route exact path="/importCSV" component={ImportCSV} />
         </Switch>
       </Router>
-      <Footer/>
+      <Footer />
     </>
   );
 }
