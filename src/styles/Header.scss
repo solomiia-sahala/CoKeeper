@@ -1,9 +1,23 @@
+@import "variables.scss";
+
 header {
   background-color: #3aafa9;
 
   .header-container {
     width: 100%;
     height: 90px;
+    font-family: $title-font;
+    font-size: $font-size-l-desktop;
+
+    a {
+      color: $bg-color-light;
+      text-decoration: none;
+    }
+
+    .line {
+      border-bottom: 3px solid $bg-color-light;
+      padding-bottom: 5px;
+    }
 
     .logo {
       img {
