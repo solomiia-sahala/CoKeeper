@@ -1,14 +1,14 @@
-import '../styles/ButtonDesktop.scss';
+import '../styles/Button.scss';
 
-type ButtonDesktopProps = {
+type ButtonProps = {
     type: string,
     value: string,
     className: string,
-    src:string
+    src: string
 }
 
 
-const ButtonDesktop = ({ type, value, className, src }: ButtonDesktopProps) => {
+const Button = ({ type, value, className, src }: ButtonProps) => {
     return (
         <>
             <input
@@ -21,5 +21,5 @@ const ButtonDesktop = ({ type, value, className, src }: ButtonDesktopProps) => {
     )
 }
 
-export default ButtonDesktop;
+export default Button;
 

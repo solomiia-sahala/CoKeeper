@@ -1,7 +1,7 @@
 import '../styles/NewContact.scss';
 
 import FavoriteIcon from './FavoriteIcon';
-import ButtonDesktop from './ButtonDesktop';
+import Button from './Button';
 
 const star = './images/star.svg';
 const noImage = './images/no-image.svg';
@@ -52,7 +52,7 @@ const NewContact = () => {
                 </div>
                 <div className="buttons">
                     <div className="button-container">
-                        <ButtonDesktop
+                        <Button
                             type='reset'
                             value='Cancel'
                             className='grey'
@@ -60,7 +60,7 @@ const NewContact = () => {
                         />
                     </div>
                     <div className="button-container">
-                        <ButtonDesktop
+                        <Button
                             type='submit'
                             value='Create'
                             className='green'
