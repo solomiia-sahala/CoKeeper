@@ -13,11 +13,7 @@ import './App.css';
 function App() {
   return (
     <>
-<<<<<<< HEAD
-  <NewContactButton/>
-=======
     <Header/>
->>>>>>> 09ca8de3432cebf5c6f62bc45edf4f80bf686ba0
       <Router>
         <Switch>
           <Route exact path="/" component={Contacts} />
