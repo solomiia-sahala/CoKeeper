@@ -6,7 +6,6 @@ import NewContact from './components/NewContact';
 import ImportCSV from './components/ImportCSV';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import NewContactButton from './components/NewContactButton';
 
 import './App.css';
 

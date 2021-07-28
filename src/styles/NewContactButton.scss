@@ -1,32 +1,43 @@
+@import "variables.scss";
+
 .create-contact-btn {
   a {
     text-decoration: none;
+    font-family: $title-font;
 
     .desktop {
-        display: block;
-        background-color: #feffff;
-        color: #17252a;
-        padding: 10px 32px;
-        border-radius: 30px;
-        cursor: pointer;
-        border: solid 1px #3aafa9;
+      cursor: pointer;
+      font-size: $font-size-s-desktop;
+      height: 54px;
+      width: 95%;
+      background-color: $bg-color-light;
+      color: $dark-grey;
+      border-radius: 30px;
+      border: solid 1px $mint;
+      margin-top: 16px;
     }
 
     .mobile {
-      display: flex;
-      justify-content: center;
-      background-color: #def2f1;
-      height: 78px;
-      width: 78px;
-      border-radius: 50%;
-      margin-left: auto;
-      position: absolute;
-      top: 96vh;
-      transform: translateY(-100%);
-      left: 43%;
-      
-      img {
-        width: 28px;
+      @include for-mobile {
+        background-color: $light-green;
+        height: 78px;
+        width: 78px;
+        border: 1px solid $light-green;
+        border-radius: 50%;
+        position: absolute;
+        top: 96vh;
+        transform: translateY(-100%);
+        left: 43%;
+
+        .text {
+          display: none;
+        }
+      }
+    }
+
+    .mobile::after {
+      @include for-mobile {
+        content: url(../plus.svg);
       }
     }
   }

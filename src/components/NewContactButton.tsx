@@ -8,14 +8,9 @@ const NewContactButton = () => {
     return (
         <div className="create-contact-btn">
             <a href="/newContact">
-                {width >= minDeviceWidth ?
-                    <button className="desktop">New contact</button> :
-                        <div className="mobile">
-                            <img src='/images/plus.svg' alt="plus" />
-                        </div>
-                }
+                <button className={`new-contact-btn ${width >= minDeviceWidth ? 'desktop' : 'mobile'}`}><span className="text">New contact</span></button>
             </a>
-        </div>
+        </div >
     )
 }
 
