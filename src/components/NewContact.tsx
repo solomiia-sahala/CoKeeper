@@ -53,7 +53,7 @@ const NewContact = () => {
                 <div className="buttons">
                     <div className="button-container">
                         <Button
-                            type='reset'
+                            type='button'
                             value='Cancel'
                             className='grey'
                             src="./images/cancel.svg"
