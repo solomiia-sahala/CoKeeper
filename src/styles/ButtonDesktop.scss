@@ -1,0 +1,49 @@
+@import "../styles//variables.scss";
+
+.button {
+  font-family: $title-font;
+  border: solid 1px $bg-color-light;
+  cursor: pointer;
+  @include for-desktop {
+    font-size: $font-size-s-desktop;
+    color: $bg-color-light;
+    padding: 10px 32px;
+    margin: 10px;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+  }
+  @include for-mobile {
+    height: 63px;
+    width: 100%;
+    color:  $dark-green;
+  }
+}
+
+.button:hover {
+  opacity: 0.33;
+  font-size: $font-size-m-desktop;
+}
+
+.green {
+  background: $dark-green;
+}
+
+.grey {
+  background: $grey;
+  @include for-mobile {
+    background: $dark-green;
+  }
+}
+
+.icon-button {
+  display: none;
+  @include for-mobile {
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
