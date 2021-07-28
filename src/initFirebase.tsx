@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import {firebaseConfig } from './constants/firebaseConfig';
+import { firebaseConfig } from './constants/firebaseConfig';
 
 firebase.initializeApp(firebaseConfig);
 

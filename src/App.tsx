@@ -12,11 +12,7 @@ import './App.css';
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <NewContact />
-=======
-    <Header/>
->>>>>>> 09ca8de3432cebf5c6f62bc45edf4f80bf686ba0
+      <Header />
       <Router>
         <Switch>
           <Route exact path="/" component={Contacts} />
