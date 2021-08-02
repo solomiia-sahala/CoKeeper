@@ -1,7 +1,7 @@
 const NewContact = () => {
     return (
         <div>
-            NewContact
+            New Contact
         </div>
     )
 }
