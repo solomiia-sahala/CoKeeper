@@ -1,0 +1,44 @@
+@import "variables.scss";
+
+.create-contact-btn {
+  a {
+    text-decoration: none;
+    font-family: $title-font;
+
+    .desktop {
+      cursor: pointer;
+      font-size: $font-size-s-desktop;
+      height: 54px;
+      width: 95%;
+      background-color: $bg-color-light;
+      color: $dark-grey;
+      border-radius: 30px;
+      border: solid 1px $mint;
+      margin-top: 16px;
+    }
+
+    .mobile {
+      @include for-mobile {
+        background-color: $light-green;
+        height: 78px;
+        width: 78px;
+        border: 1px solid $light-green;
+        border-radius: 50%;
+        position: fixed;
+        top: 96vh;
+        transform: translateY(-100%);
+        left: 44.5%;
+
+        .text {
+          display: none;
+        }
+      }
+    }
+
+    .mobile::after {
+      @include for-mobile {
+        content: url(../plus.svg);
+      }
+    }
+  }
+}

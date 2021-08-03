@@ -4,10 +4,50 @@ header {
   background-color: #3aafa9;
 
   .header-container {
+    display: grid;
+    grid-template-columns: 40% 15% 15% 15% 15%;
     width: 100%;
     height: 90px;
     font-family: $title-font;
-    font-size: $font-size-l-desktop;
+    font-size: $font-size-m-desktop;
+
+    @include for-mobile {
+      font-size: $font-size-l-mobile;
+      grid-template-columns: 98% 0 0;
+    }
+
+    .contacts {
+      margin-top: 30px;
+
+      img {
+        display: none;
+      }
+
+      @include for-mobile {
+        width: 49.5%;
+        height: 63px;
+        background-color: $dark-green;
+        position: absolute;
+        bottom: 0;
+        border: 1px solid $bg-color-light;
+
+        a {
+          width: 100%;
+          height: 100%;
+
+          .text {
+            display: none;
+          }
+
+          img {
+            display: block;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+          }
+        }
+      }
+    }
 
     a {
       color: $bg-color-light;
@@ -26,11 +66,49 @@ header {
       }
     }
 
+    .favorites {
+      margin-top: 30px;
+
+      img {
+        display: none;
+      }
+      @include for-mobile {
+        width: 49.5%;
+        height: 63px;
+        background-color: $dark-green;
+        position: absolute;
+        bottom: 0px;
+        right: 0;
+        border: 1px solid $bg-color-light;
+
+        a {
+          width: 100%;
+          height: 100%;
+
+          .text {
+            display: none;
+          }
+          img {
+            display: block;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+          }
+        }
+      }
+    }
+
     .import-csv {
       float: right;
       height: 60px;
       width: 60px;
       margin: 10px 20px;
     }
+  }
+}
+
+.hide {
+  @include for-mobile {
+    display: none;
   }
 }
