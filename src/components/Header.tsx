@@ -42,7 +42,7 @@ const Header = () => {
                     </a>
                 </div>
             </div>
-        </header >
+        </header>
     )
 }
 
