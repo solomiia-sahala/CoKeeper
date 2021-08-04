@@ -24,20 +24,15 @@ const mockUserData = [
         job: 'Sunrise today',
         mobile: 726392833,
         favorite: false
-    },
-
-
+    }
 ]
 
 const Contacts = () => {
     return (
         <div>
-            {mockUserData.map(user => <ContactCard key={user.id} userContact={user} />
-
-            )}
+            {mockUserData.map(user => <ContactCard key={user.id} userContact={user} />)}
         </div>
     )
 }
 
 export default Contacts;
-

@@ -1,8 +1,18 @@
 import '../styles/ContactCard.scss';
 
-const ContactCard = (props: any) => {
+interface UserContactProps {
+    userContact: {
+        nameSurname: string,
+        mobile: number,
+        position: string,
+        job: string,
+        favorite: boolean
+    }
+}
+
+const ContactCard = ({ userContact }: UserContactProps) => {
     const favoriteIcon = "./images/favorite.svg";
-    const { nameSurname, position, job, mobile, favorite } = props.userContact;
+    const { nameSurname, position, job, mobile, favorite } = userContact;
     const mobileNum = mobile.toString();
     return (
         <div className="contact-card-container">
