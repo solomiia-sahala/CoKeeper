@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import NewContactButton from './NewContactButton';
 
 import '../styles/Header.scss';
@@ -9,10 +11,9 @@ const iconHome = './images/home.svg';
 const iconPeopleFavorite = './images/people-favorite.svg';
 
 const Header = () => {
-    const url = window.location.href.split('/');
-    let currentPath = url[url.length - 1];
+    let currentPath = window.location.pathname;
     return (
-        <header  className={`${currentPath === 'newContact' ? 'hide' : ''}`}>
+        <header className={classNames({ 'hide': currentPath === '/newContact' })}>
             <div className="header-container">
                 <div>
                     <a href="/" className="logo">
@@ -23,13 +24,13 @@ const Header = () => {
                     </a>
                 </div>
                 <div className="contacts">
-                    <a href="/" className={`${currentPath === '' ? 'line' : ''}`}>
+                    <a href="/" className={classNames({ 'line': currentPath === '/' })}>
                         <img src={iconHome} alt="icon home" />
                         <span className="text">Contacts</span>
                     </a>
                 </div>
                 <div className="favorites mobile-btn">
-                    <a href="/favorites" className={`${currentPath === 'favorites' ? 'line' : ''}`}>
+                    <a href="/favorites" className={classNames({ 'line': currentPath === '/favorites' })}>
                         <img src={iconPeopleFavorite} alt="icon people favorites" />
                         <span className="text">Favorites</span>
                     </a>
@@ -41,7 +42,7 @@ const Header = () => {
                     </a>
                 </div>
             </div>
-        </header>
+        </header >
     )
 }
 
