@@ -4,24 +4,18 @@ type ButtonProps = {
     type: string,
     value: string,
     className: string,
-    src: string
+    src: string,
+    callback?: Function
 }
 
-
-const Button = ({ type, value, className, src }: ButtonProps) => {
-    const redirectToHome = (): void => {
-        if (type === "button") {
-            window.location.href = 'http://localhost:3000/';
-        }
-    }
-
+const Button = ({ type, value, className, src, callback }: ButtonProps) => {
     return (
         <>
             <input
                 type={type}
                 value={value}
                 className={`button ${className}`}
-                onClick={redirectToHome}
+                onClick={() => callback && callback()}
             />
             <img src={src} alt="icon" className="icon-button" />
         </>
@@ -29,4 +23,3 @@ const Button = ({ type, value, className, src }: ButtonProps) => {
 }
 
 export default Button;
-

@@ -7,6 +7,9 @@ const star = './images/star.svg';
 const noImage = './images/no-image.svg';
 
 const NewContact = () => {
+    const redirectToHome = (): void => {
+        window.location.href = 'http://localhost:3000/';
+    }
     return (
         <div>
             <div className="header">
@@ -57,6 +60,7 @@ const NewContact = () => {
                             value='Cancel'
                             className='grey'
                             src="./images/cancel.svg"
+                            callback={redirectToHome}
                         />
                     </div>
                     <div className="button-container">
