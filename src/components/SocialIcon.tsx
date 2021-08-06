@@ -1,7 +1,7 @@
 import '../styles/SocialIcon.scss';
 
 type Icon = {
-    href: string,
+    href: string | undefined,
     src: string
     name: string,
 }
