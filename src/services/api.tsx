@@ -1,6 +1,8 @@
 import firebase from '../initFirebase';
+import { storage } from '../initFirebase';
 
 const db = firebase.firestore();
+const storageRef = storage.ref();
 
 const api = {
     createContact(
@@ -80,6 +82,12 @@ const api = {
                 console.log("Error getting documents: ", error);
             });
         return allFavorites;
+    },
+
+    async uploadAvatar(image: any) {
+        const imageRef = storageRef.child(image.name);
+        imageRef.put(image);
+        return await imageRef.getDownloadURL();
     }
 }
 
