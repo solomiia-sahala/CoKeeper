@@ -1,0 +1,98 @@
+@import "variables.scss";
+
+.contact-card-container {
+  position: relative;
+  height: 330px;
+  width: 420px;
+  border: 1px solid $light-green;
+  box-shadow: 0 4px 4px $light-grey;
+  margin: 5px;
+  color: $dark-grey;
+
+  @include for-mobile {
+    height: 155px;
+    width: 155px;
+  }
+
+  .avatar {
+    height: 204px;
+    width: 420px;
+    object-fit: cover;
+
+    @include for-mobile {
+      height: 39px;
+      width: 39px;
+      border-radius: 50%;
+      margin: 15px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .name-surname-container {
+    position: absolute;
+    top: 161px;
+    left: 0;
+    width: 100%;
+    height: 43px;
+    opacity: 0.4;
+    background-color: $bg-color-light;
+    @include for-mobile {
+      display: none;
+    }
+  }
+  h3 {
+    position: absolute;
+    top: 142px;
+    left: 20px;
+    font-size: $font-size-m-title-desktop;
+    font-family: $title-font;
+    letter-spacing: 1.5px;
+
+    @include for-mobile {
+      font-size: $font-size-s-mobile;
+      top: 48px;
+      left: 5px;
+    }
+  }
+
+  .fav-icon {
+    position: absolute;
+    top: 204px;
+    right: 30px;
+
+    @include for-mobile {
+      height: 34px;
+      width: 29px;
+      top: 0;
+      right: 10px;
+    }
+  }
+
+  .contact-info {
+    font-family: $main-font;
+    font-size: $font-size-s-desktop;
+    padding: 5px;
+
+    @include for-mobile {
+      font-size: $font-size-s-mobile;
+    }
+
+    img {
+      margin-left: 10px;
+
+      @include for-mobile {
+        display: none;
+      }
+    }
+  }
+
+  .mobile {
+    img {
+      margin-right: 15px;
+    }
+    span {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}
