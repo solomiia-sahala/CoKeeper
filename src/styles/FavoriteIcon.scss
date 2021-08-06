@@ -1,0 +1,7 @@
+@import "../styles/variables.scss";
+img {
+  @include for-mobile {
+    width: 48px;
+    height: 32px;
+  }
+}
