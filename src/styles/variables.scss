@@ -20,14 +20,13 @@ $font-size-m-desktop: 26px;
 $font-size-l-desktop: 36px;
 
 @mixin for-desktop {
-    @media screen and (min-width: 768px) {
-        @content;
-    }
+  @media screen and (min-width: 768px) {
+    @content;
+  }
 }
 
 @mixin for-mobile {
-    @media screen and (max-width: 767px) {
-        @content;
-    }
+  @media screen and (max-width: 767px) {
+    @content;
+  }
 }
-    
