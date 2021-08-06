@@ -24,10 +24,10 @@
         width: 78px;
         border: 1px solid $light-green;
         border-radius: 50%;
-        position: absolute;
+        position: fixed;
         top: 96vh;
         transform: translateY(-100%);
-        left: 43%;
+        left: 44.5%;
 
         .text {
           display: none;
