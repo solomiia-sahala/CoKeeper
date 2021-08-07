@@ -18,12 +18,11 @@ const ContactCard = ({ userContact }: UserContactProps) => {
 
     const redirectToDetailsPage = (): void => {
         console.log('here')
-        window.location.href = 'http://localhost:3000/aboutContact/sdf';
+        window.location.href = 'http://localhost:3000/aboutContact/id';
     } 
 
     return (
         <div className="contact-card-container" onClick={()=>redirectToDetailsPage()}>
-            {/* <button onClick={()=>redirectToDetailsPage}>Click</button> */}
             <img src={avatar} className="avatar" alt="avatar" />
             <div className="name-surname-container" />
             <h3>{nameSurname}</h3>
