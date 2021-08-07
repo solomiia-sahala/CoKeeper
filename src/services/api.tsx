@@ -7,8 +7,9 @@ const storageRef = storage.ref();
 const api = {
     createContact(
         nameSurname: string,
-        mobilePhone: number,
+        mobile: number | null,
         email: string,
+        avatar: any,
         jobTitle: string,
         position: string,
         linkFacebook: string,
@@ -18,8 +19,9 @@ const api = {
     ) {
         const userRef = db.collection('contacts').add({
             nameSurname,
-            mobilePhone,
+            mobile,
             email,
+            avatar,
             jobTitle,
             position,
             linkFacebook,
@@ -34,7 +36,7 @@ const api = {
     },
 
     updateContact(id: string, updateData: object) {
-        db.collection("contacts").doc(id).set(updateData)
+        db.collection("contacts").doc(id).update(updateData)
             .catch((error) => {
                 console.error("Error updating document: ", error);
             });
