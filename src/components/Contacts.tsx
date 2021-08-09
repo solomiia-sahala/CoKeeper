@@ -1,37 +1,23 @@
+import { useState, useEffect } from 'react';
+import api from '../services/api';
+
 import ContactCard from './ContactCard';
 
-const mockUserData = [
-    {
-        id: 1,
-        nameSurname: 'Betty Oroccal',
-        position: 'Developer',
-        job: 'Sunrise today',
-        mobile: 726392833,
-        favorite: true
-    },
-    {
-        id: 2,
-        nameSurname: 'Betty Oroccal2',
-        position: 'Developer',
-        job: 'Sunrise today',
-        mobile: 726392833,
-        favorite: true
-    },
-    {
-        id: 3,
-        nameSurname: 'Betty Oroccal3',
-        position: 'Developer',
-        job: 'Sunrise today',
-        mobile: 726392833,
-        favorite: false
-    }
-]
+import '../styles/Contacts.scss';
 
 const Contacts = () => {
+    const [users, setUsers] = useState<any[] | null>(null);
+    useEffect(() => {
+        api.getAllContacts().then((result) => setUsers(result))
+    }, [])
+
     return (
-        <div>
-            {mockUserData.map(user => <ContactCard key={user.id} userContact={user} />)}
-        </div>
+        <div className="contacts-container" >
+            <h3>Contacts({users?.length})</h3>
+            <div className="grid-contacts-container">
+                {users?.map(user => <ContactCard userContact={user} />)}
+            </div>
+        </div >
     )
 }
 

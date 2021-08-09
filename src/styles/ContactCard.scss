@@ -8,6 +8,7 @@
   box-shadow: 0 4px 4px $light-grey;
   margin: 5px;
   color: $dark-grey;
+  cursor: pointer;
 
   @include for-mobile {
     height: 155px;
