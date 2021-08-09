@@ -88,7 +88,7 @@ const api = {
 
     async uploadAvatar(image: any) {
         const imageRef = storageRef.child(image.name);
-        imageRef.put(image);
+        await imageRef.put(image)
         return await imageRef.getDownloadURL();
     }
 }

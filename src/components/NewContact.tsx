@@ -60,9 +60,8 @@ const NewContact = () => {
             linkTwitter,
             favorite } = contactInfo;
 
-        await api.uploadAvatar(image).then(imgURL => {
-            setContactInfo({ ...contactInfo, ['avatar']: imgURL })
-        });
+        let imageRef = await api.uploadAvatar(image);
+        
         let userRef = await api.createContact(
             nameSurname,
             mobile,
@@ -76,7 +75,7 @@ const NewContact = () => {
             favorite
         )
 
-        await api.updateContact(userRef, { "id": userRef });
+        await api.updateContact(userRef, { "id": userRef, "avatar": imageRef });
         window.location.href = `http://localhost:3000/aboutContact/${userRef}`;
     }
 
