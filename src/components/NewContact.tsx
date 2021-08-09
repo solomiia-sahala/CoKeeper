@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import api from '../services/api';
+import { useHistory } from 'react-router';
 
 import FavoriteIcon from './FavoriteIcon';
 import Button from './Button';
@@ -37,50 +38,35 @@ const NewContact = () => {
         favorite: false
     })
 
-    const handleChangeImage = (e: any) => {
+    const history = useHistory();
+
+    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+        if ( e.target.files == null ) {
+            throw new Error("Error finding e.target.files"); 
+         }
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
         }
+
     }
 
-    const handleChangeInput = (e: any) => {
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
     }
 
-    const onSubmitForm = async (e: any) => {
+    const onSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { nameSurname,
-            mobile,
-            email,
-            avatar,
-            position,
-            jobTitle,
-            linkFacebook,
-            linkLinkedin,
-            linkTwitter,
-            favorite } = contactInfo;
 
         let imageRef = await api.uploadAvatar(image);
-        
-        let userRef = await api.createContact(
-            nameSurname,
-            mobile,
-            email,
-            avatar,
-            position,
-            jobTitle,
-            linkFacebook,
-            linkLinkedin,
-            linkTwitter,
-            favorite
-        )
+
+        let userRef = await api.createContact(contactInfo);
 
         await api.updateContact(userRef, { "id": userRef, "avatar": imageRef });
-        window.location.href = `http://localhost:3000/aboutContact/${userRef}`;
+        history.push(`/aboutContact/${userRef}`);
     }
 
     const redirectToHome = (): void => {
-        window.location.href = 'http://localhost:3000/';
+        history.push('/');
     }
 
     return (
