@@ -4,7 +4,7 @@ import { storage } from '../initFirebase';
 const db = firebase.firestore();
 const storageRef = storage.ref();
 
-type updateDataProps = {
+type DataProps = {
     id?: string,
     nameSurname?: string,
     mobile?: number | null,
@@ -19,7 +19,7 @@ type updateDataProps = {
 }
 
 const api = {
-    createContact(contactData: object) {
+    createContact(contactData: DataProps) {
         const userRef = db.collection('contacts').add(contactData).then((docRef) => {
             return docRef.id;
         })
@@ -27,7 +27,7 @@ const api = {
         return userRef;
     },
 
-    updateContact(id: string, updateData: updateDataProps) {
+    updateContact(id: string, updateData: DataProps) {
         db.collection("contacts").doc(id).update(updateData)
             .catch((error) => {
                 console.error("Error updating document: ", error);

@@ -1,9 +1,7 @@
-import { useState } from 'react';
-
 import '../styles/FavoriteIcon.scss';
 
-const notFavoriteIcon = './images/notFavorite.svg';
-const isFavoriteIcon = './images/isFavorite.svg';
+const notFavoriteIcon = '/images/notFavorite.svg';
+const isFavoriteIcon = '/images/isFavorite.svg';
 
 const FavoriteIcon = ({ favorite, callback }: { favorite: boolean, callback: Function }) => {
     return (
@@ -17,4 +15,3 @@ const FavoriteIcon = ({ favorite, callback }: { favorite: boolean, callback: Fun
 }
 
 export default FavoriteIcon;
-
