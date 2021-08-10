@@ -1,6 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import api from '../services/api';
 import { useHistory } from 'react-router';
+import classNames from 'classnames';
 
 import FavoriteIcon from './FavoriteIcon';
 import Button from './Button';
@@ -20,11 +21,12 @@ type ContactData = {
     linkFacebook: string,
     linkLinkedin: string,
     linkTwitter: string,
-    favorite: boolean
 }
 
 const NewContact = () => {
     const [image, setImage] = useState<any>(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isFavorite, setIsFavorite] = useState(false);
     const [contactInfo, setContactInfo] = useState<ContactData>({
         nameSurname: '',
         mobile: null,
@@ -35,16 +37,16 @@ const NewContact = () => {
         linkFacebook: '',
         linkLinkedin: '',
         linkTwitter: '',
-        favorite: false
     })
 
     const history = useHistory();
 
     const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-        if ( e.target.files == null ) {
-            throw new Error("Error finding e.target.files"); 
-         }
+        if (e.target.files == null) {
+            throw new Error("Error finding e.target.files");
+        }
         if (e.target.files[0]) {
+            setSelectedImage(URL.createObjectURL(e.target.files[0]))
             setImage(e.target.files[0]);
         }
 
@@ -61,14 +63,13 @@ const NewContact = () => {
 
         let userRef = await api.createContact(contactInfo);
 
-        await api.updateContact(userRef, { "id": userRef, "avatar": imageRef });
+        await api.updateContact(userRef, { "id": userRef, "avatar": imageRef, "favorite": isFavorite });
         history.push(`/aboutContact/${userRef}`);
     }
 
     const redirectToHome = (): void => {
         history.push('/');
     }
-
     return (
         <div>
             <div className="header">
@@ -77,9 +78,9 @@ const NewContact = () => {
             <form onSubmit={onSubmitForm}>
                 <div className="form">
                     <div className="grid-container-general-info">
-                        <div className="img">
+                        <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
-                                <img src={noImage} alt="no image" />
+                                <img src={selectedImage ? selectedImage : noImage} alt="no image" />
                             </label>
                             <input id="file-input" type="file" onChange={handleChangeImage} />
                         </div>
@@ -114,7 +115,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                         </div>
-                        <FavoriteIcon favorite={false} />
+                        <FavoriteIcon favorite={isFavorite} callback={() => setIsFavorite(!isFavorite)} />
                     </div>
                     <div className="grid-container-add-info">
                         <div>
