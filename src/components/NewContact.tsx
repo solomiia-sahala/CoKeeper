@@ -8,8 +8,8 @@ import Button from './Button';
 
 import '../styles/NewContact.scss';
 
-const star = './images/star.svg';
-const noImage = './images/no-image.svg';
+const star = '/images/star.svg';
+const noImage = '/images/no-image.svg';
 
 type ContactData = {
     nameSurname: string,
@@ -95,7 +95,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                             <br />
-                            <img src="./images/mobile-phone.svg" alt="icon" />
+                            <img src="/images/mobile-phone.svg" alt="icon" />
                             <input
                                 type="number"
                                 name="mobile"
@@ -105,7 +105,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                             <br />
-                            <img src="./images/email.svg" alt="icon" />
+                            <img src="/images/email.svg" alt="icon" />
                             <input
                                 type="email"
                                 name="email"
@@ -120,7 +120,7 @@ const NewContact = () => {
                     <div className="grid-container-add-info">
                         <div>
                             <p>Social links</p>
-                            <img src="./images/facebook.svg" alt="icon" />
+                            <img src="/images/facebook.svg" alt="icon" />
                             <input
                                 type="text"
                                 name="linkFacebook"
@@ -129,7 +129,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                             <br />
-                            <img src="./images/twitter.svg" alt="icon" />
+                            <img src="/images/twitter.svg" alt="icon" />
                             <input
                                 type="text"
                                 name="linkTwitter"
@@ -138,7 +138,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                             <br />
-                            <img src="./images/linkedin.svg" alt="icon" />
+                            <img src="/images/linkedin.svg" alt="icon" />
                             <input
                                 type="text"
                                 name="linkLinkedin"
@@ -148,7 +148,7 @@ const NewContact = () => {
                         </div>
                         <div>
                             <p>Job details</p>
-                            <img src="./images/location-company.svg" alt="icon" />
+                            <img src="/images/location-company.svg" alt="icon" />
                             <input
                                 type="text"
                                 name="jobTitle"
@@ -157,7 +157,7 @@ const NewContact = () => {
                                 onChange={handleChangeInput}
                             />
                             <br />
-                            <img src="./images/work-case.svg" alt="icon" />
+                            <img src="/images/work-case.svg" alt="icon" />
                             <input
                                 type="text"
                                 name="position"
@@ -174,7 +174,7 @@ const NewContact = () => {
                             type='button'
                             value='Cancel'
                             className='grey'
-                            src="./images/cancel.svg"
+                            src="/images/cancel.svg"
                             callback={redirectToHome}
                         />
                     </div>
@@ -183,7 +183,7 @@ const NewContact = () => {
                             type='submit'
                             value='Create'
                             className='green'
-                            src="./images/ok.svg"
+                            src="/images/ok.svg"
                         />
                     </div>
                 </div>
