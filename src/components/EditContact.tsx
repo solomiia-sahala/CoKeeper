@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams, useLocation } from 'react-router';
 import classNames from 'classnames';
 
 import api from '../services/api';
@@ -7,10 +7,15 @@ import api from '../services/api';
 import FavoriteIcon from './FavoriteIcon';
 import Button from './Button';
 
+import '../styles/EditContact.scss';
+
 const star = '/images/star.svg';
+const editIcon = '/images/edit-icon.svg';
+const deleteIcon = '/images/delete-icon.svg';
 
 const EditContact = () => {
     const history = useHistory();
+    console.log(useLocation())
     const { id } = useParams<{ id: string }>();
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string>('');
@@ -94,8 +99,10 @@ const EditContact = () => {
                         <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
                                 <img src={selectedImage ? selectedImage : image} alt="no image" />
+                                <img src={editIcon} alt="edit Icon" className="edit" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
+                            <button className="delete-avatar">Delete avatar</button>
                         </div>
                         <div className="required-fields">
                             <p>General info <img src={star} alt="required fields" className="star-icon" /></p>
@@ -187,6 +194,10 @@ const EditContact = () => {
                                 onChange={handleChangeInput}
                             />
                         </div>
+                        <div className="delete-contact">
+                            <img src={deleteIcon} alt="delete icon"/>
+                            <span>Delete contact</span>
+                        </div>
                     </div>
                 </div>
                 <div className="buttons">
@@ -195,7 +206,7 @@ const EditContact = () => {
                             type='button'
                             value='Cancel'
                             className='grey'
-                            src="./images/cancel.svg"
+                            src="/images/cancel.svg"
                             callback={redirectToHome}
                         />
                     </div>
@@ -204,7 +215,7 @@ const EditContact = () => {
                             type='submit'
                             value='Update'
                             className='green'
-                            src="./images/ok.svg"
+                            src="/images/ok.svg"
                         />
                     </div>
                 </div>

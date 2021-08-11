@@ -1,0 +1,70 @@
+@import "variables.scss";
+
+.edit {
+  width: 66px !important;
+  height: 66px !important;
+  position: absolute;
+  top: 80px;
+  left: 130px;
+}
+
+@include for-mobile {
+  .img {
+    margin-bottom: 40px !important;
+    position: relative;
+  }
+  .edit {
+    width: 33px !important;
+    height: 33px !important;
+    top: 60px;
+    left: 90px;
+    margin: auto;
+  }
+}
+
+.delete-avatar {
+  background-color: #cd5c5c;
+  border: none;
+  border-radius: 25px;
+  color: $bg-color-light;
+  padding: 9px 14px;
+  font-size: $font-size-s-mobile;
+  margin: 8px 2px;
+  transition-duration: 0.4s;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 125px;
+
+  @include for-mobile {
+    font-size: $font-size-s-mobile;
+    position: absolute;
+    top: 140px;
+    right: 55px;
+    font-size: 12px;
+  }
+}
+.delete-avatar:hover {
+  background-color: #800000;
+}
+
+.delete-contact {
+  margin: 10px 0;
+  color: #cd5c5c;
+  font-size: $font-size-m-mobile;
+  span {
+    cursor: pointer;
+  }
+
+  @include for-mobile {
+    font-size: $font-size-s-mobile;
+  }
+  img {
+    display: inline-block !important;
+    height: 30px;
+    padding: 0 5px;
+  }
+}
+
+.delete-contact:hover {
+  color: #800000;
+}
