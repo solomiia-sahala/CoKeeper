@@ -36,40 +36,6 @@ const EditContact = () => {
         });
     }, [])
 
-    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-    }
-
-    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files == null) {
-            throw new Error("Error finding e.target.files");
-        }
-        if (e.target.files[0]) {
-            setSelectedImage(URL.createObjectURL(e.target.files[0]))
-            setImage(e.target.files[0]);
-        }
-
-    }
-
-    const onUpdateForm = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // await api.updateContact(id, userInfo);
-        if (selectedImage) {
-            let imgRef = await api.uploadAvatar(image);
-            await api.deleteImagefromStorage(userInfo.avatar);
-           await api.updateContact(id, {'avatar':imgRef});
-        }
-        // history.push(`/aboutContact/${id}`);
-    }
-
-    const redirectToHome = (): void => {
-        history.push('/');
-    }
-
-    const changeFavoriteStatus = () => {
-        setIsFavorite(!isFavorite);
-        setUserInfo({ ...userInfo, "favorite": !userInfo.favorite });
-    }
     const {
         nameSurname,
         mobile,
@@ -81,10 +47,45 @@ const EditContact = () => {
         linkLinkedin,
         linkTwitter,
     } = userInfo;
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    }
+
+    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files == null) {
+            throw new Error("Error finding e.target.files");
+        }
+        if (e.target.files[0]) {
+            setSelectedImage(URL.createObjectURL(e.target.files[0]));
+            setImage(e.target.files[0]);
+        }
+
+    }
+
+    const onUpdateForm = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        await api.updateContact(id, userInfo);
+        if (selectedImage) {
+            await api.deleteImageFromStorage(avatar);
+            let imgRef = await api.uploadAvatar(image);
+            console.log(imgRef);
+            await api.updateContact(id, { 'avatar': imgRef });
+        }
+        history.push(`/aboutContact/${id}`);
+    }
+
+    const redirectToHome = (): void => {
+        history.push('/');
+    }
+
+    const changeFavoriteStatus = () => {
+        setIsFavorite(!isFavorite);
+        setUserInfo({ ...userInfo, "favorite": !userInfo.favorite });
+    }
 
     return (
         <div>
-            <div className="header-edit">
+            <div className="header">
                 <h1>Edit contact</h1>
             </div>
             <form onSubmit={onUpdateForm}>
@@ -92,7 +93,7 @@ const EditContact = () => {
                     <div className="grid-container-general-info">
                         <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
-                                <img src={selectedImage? selectedImage: image} alt="no image" />
+                                <img src={selectedImage ? selectedImage : image} alt="no image" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
                         </div>

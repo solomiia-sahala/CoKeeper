@@ -4,36 +4,30 @@ import { storage } from '../initFirebase';
 const db = firebase.firestore();
 const storageRef = storage.ref();
 
+type ContactDataProps = {
+    id?: string,
+    nameSurname?: string,
+    mobile?: number | null,
+    email?: string,
+    avatar?: any,
+    position?: string,
+    jobTitle?: string,
+    linkFacebook?: string,
+    linkLinkedin?: string,
+    linkTwitter?: string,
+    favorite?: boolean
+}
+
 const api = {
-    createContact(
-        nameSurname: string,
-        mobilePhone: number,
-        email: string,
-        jobTitle: string,
-        position: string,
-        linkFacebook: string,
-        linkTwitter: string,
-        linkLinkedin: string,
-        favorite: boolean
-    ) {
-        const userRef = db.collection('contacts').add({
-            nameSurname,
-            mobilePhone,
-            email,
-            jobTitle,
-            position,
-            linkFacebook,
-            linkTwitter,
-            linkLinkedin,
-            favorite
-        }).then((docRef) => {
+    createContact(contactData: ContactDataProps) {
+        const userRef = db.collection('contacts').add(contactData).then((docRef) => {
             return docRef.id;
         })
 
         return userRef;
     },
 
-    updateContact(id: string, updateData: object) {
+    updateContact(id: string, updateData: ContactDataProps) {
         db.collection("contacts").doc(id).update(updateData)
             .catch((error) => {
                 console.error("Error updating document: ", error);
@@ -84,23 +78,17 @@ const api = {
         return allFavorites;
     },
 
-    async uploadAvatar(image: any) {
+    async uploadAvatar(image: any):Promise<string> {
         const imageRef = storageRef.child(image.name);
-        imageRef.put(image);
-        const id = await imageRef.getDownloadURL();
-        return id;
+        await imageRef.put(image);
+        return await imageRef.getDownloadURL();
     },
-    async deleteImagefromStorage(fullpath: string) {
+
+    async deleteImageFromStorage(fullpath: string):Promise<void> {
         let splitedPath = fullpath.split('/');
         let imgName = splitedPath[splitedPath.length - 1].split('?')[0];
         let desertRef = storageRef.child(imgName);
-
-        desertRef.delete().then(() => {
-            console.log('deleted');
-        }).catch((error) => {
-            console.log(error)
-            // Uh-oh, an error occurred!
-        });
+        return await desertRef.delete();
     }
 }
 

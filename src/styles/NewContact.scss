@@ -107,23 +107,32 @@ div {
       }
 
       .img {
+        @include for-mobile {
+          margin: 0 auto;
+        }
+
         img {
-          width: 344px;
-          height: 226px;
-          margin: auto;
-          margin-top: 20px;
-          display: block;
+          width: 340px;
+          height: 240px;
+          object-fit: cover;
+          margin: 20px 10px;
+          display: inline-block;
           cursor: pointer;
 
           @include for-mobile {
-            width: 240px;
+            width: 200px;
             height: 140px;
+            margin: 0;
           }
         }
 
         input {
           display: none;
         }
+      }
+
+      .shadow {
+        opacity: 0.5;
       }
     }
 
@@ -156,12 +165,12 @@ div {
     justify-content: flex-end;
 
     @include for-mobile {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        width: 100vw;
-      }
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100vw;
+    }
   }
   .button-container {
-      position: relative;
+    position: relative;
   }
 }

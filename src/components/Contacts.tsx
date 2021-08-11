@@ -15,7 +15,7 @@ const Contacts = () => {
         <div className="contacts-container" >
             <h3>Contacts({users?.length})</h3>
             <div className="grid-contacts-container">
-                {users?.map(user => <ContactCard userContact={user} />)}
+                {users?.map(user => <ContactCard key={user.id} userContact={user} />)}
             </div>
         </div >
     )
