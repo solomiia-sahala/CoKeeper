@@ -4,37 +4,31 @@ import { storage } from '../initFirebase';
 const db = firebase.firestore();
 const storageRef = storage.ref();
 
+type ContactDataProps = {
+    id?: string,
+    nameSurname?: string,
+    mobile?: number | null,
+    email?: string,
+    avatar?: any,
+    position?: string,
+    jobTitle?: string,
+    linkFacebook?: string,
+    linkLinkedin?: string,
+    linkTwitter?: string,
+    favorite?: boolean
+}
+
 const api = {
-    createContact(
-        nameSurname: string,
-        mobilePhone: number,
-        email: string,
-        jobTitle: string,
-        position: string,
-        linkFacebook: string,
-        linkTwitter: string,
-        linkLinkedin: string,
-        favorite: boolean
-    ) {
-        const userRef = db.collection('contacts').add({
-            nameSurname,
-            mobilePhone,
-            email,
-            jobTitle,
-            position,
-            linkFacebook,
-            linkTwitter,
-            linkLinkedin,
-            favorite
-        }).then((docRef) => {
+    createContact(contactData: ContactDataProps) {
+        const userRef = db.collection('contacts').add(contactData).then((docRef) => {
             return docRef.id;
         })
 
         return userRef;
     },
 
-    updateContact(id: string, updateData: object) {
-        db.collection("contacts").doc(id).set(updateData)
+    updateContact(id: string, updateData: ContactDataProps) {
+        db.collection("contacts").doc(id).update(updateData)
             .catch((error) => {
                 console.error("Error updating document: ", error);
             });
@@ -86,7 +80,7 @@ const api = {
 
     async uploadAvatar(image: any) {
         const imageRef = storageRef.child(image.name);
-        imageRef.put(image);
+        await imageRef.put(image)
         return await imageRef.getDownloadURL();
     }
 }

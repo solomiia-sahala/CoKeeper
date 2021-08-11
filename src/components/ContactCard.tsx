@@ -1,3 +1,5 @@
+import { useHistory } from 'react-router';
+
 import '../styles/ContactCard.scss';
 
 interface UserContactProps {
@@ -7,22 +9,23 @@ interface UserContactProps {
         position: string,
         jobTitle: string,
         favorite: boolean,
-        avatar: string
+        avatar: string,
+        id: number
     }
 }
 
 const ContactCard = ({ userContact }: UserContactProps) => {
+    const history = useHistory();
     const favoriteIcon = "./images/favorite.svg";
-    const { nameSurname, position, jobTitle, mobile, favorite, avatar } = userContact;
+    const { nameSurname, position, jobTitle, mobile, favorite, avatar, id } = userContact;
     const mobileNum = mobile.toString();
 
     const redirectToDetailsPage = (): void => {
-        console.log('here')
-        window.location.href = 'http://localhost:3000/aboutContact/id';
-    } 
+        history.push(`/aboutContact/${id}`);
+    }
 
     return (
-        <div className="contact-card-container" onClick={()=>redirectToDetailsPage()}>
+        <div className="contact-card-container" onClick={() => redirectToDetailsPage()}>
             <img src={avatar} className="avatar" alt="avatar" />
             <div className="name-surname-container" />
             <h3>{nameSurname}</h3>

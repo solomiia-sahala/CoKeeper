@@ -4,11 +4,11 @@ import NewContactButton from './NewContactButton';
 
 import '../styles/Header.scss';
 
-const logoDesktop = './images/logo-desktop.svg';
-const logoMobile = './images/logo-mobile.svg';
-const iconImportCSV = './images/importCSV.svg';
-const iconHome = './images/home.svg';
-const iconPeopleFavorite = './images/people-favorite.svg';
+const logoDesktop = '/images/logo-desktop.svg';
+const logoMobile = '/images/logo-mobile.svg';
+const iconImportCSV = '/images/importCSV.svg';
+const iconHome = '/images/home.svg';
+const iconPeopleFavorite = '/images/people-favorite.svg';
 
 const Header = () => {
     let currentPath = window.location.pathname;
