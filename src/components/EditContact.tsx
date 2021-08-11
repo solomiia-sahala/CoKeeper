@@ -14,6 +14,7 @@ const EditContact = () => {
     const { id } = useParams<{ id: string }>();
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string>('');
+    const [image, setImage] = useState<any>(null);
     const [userInfo, setUserInfo] = useState({
         nameSurname: '',
         mobile: undefined,
@@ -31,7 +32,7 @@ const EditContact = () => {
         api.getContactById(id).then((res: any): void => {
             setUserInfo(res);
             setIsFavorite(res.favorite);
-            setSelectedImage(res.avatar)
+            setImage(res.avatar)
         });
     }, [])
 
@@ -45,14 +46,19 @@ const EditContact = () => {
         }
         if (e.target.files[0]) {
             setSelectedImage(URL.createObjectURL(e.target.files[0]))
-            setUserInfo({ ...userInfo, [e.target.name]: e.target.files[0] });
+            setImage(e.target.files[0]);
         }
 
     }
 
-    const onUpdateForm = (e: FormEvent<HTMLFormElement>) => {
+    const onUpdateForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        api.updateContact(id, userInfo);
+        // await api.updateContact(id, userInfo);
+        if (selectedImage) {
+            let imgRef = await api.uploadAvatar(image);
+            await api.deleteImagefromStorage(userInfo.avatar);
+           await api.updateContact(id, {'avatar':imgRef});
+        }
         // history.push(`/aboutContact/${id}`);
     }
 
@@ -75,6 +81,7 @@ const EditContact = () => {
         linkLinkedin,
         linkTwitter,
     } = userInfo;
+
     return (
         <div>
             <div className="header-edit">
@@ -85,7 +92,7 @@ const EditContact = () => {
                     <div className="grid-container-general-info">
                         <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
-                                <img src={selectedImage} alt="no image" />
+                                <img src={selectedImage? selectedImage: image} alt="no image" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
                         </div>

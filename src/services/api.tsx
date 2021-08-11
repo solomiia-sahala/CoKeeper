@@ -34,7 +34,7 @@ const api = {
     },
 
     updateContact(id: string, updateData: object) {
-        db.collection("contacts").doc(id).set(updateData)
+        db.collection("contacts").doc(id).update(updateData)
             .catch((error) => {
                 console.error("Error updating document: ", error);
             });
@@ -87,7 +87,20 @@ const api = {
     async uploadAvatar(image: any) {
         const imageRef = storageRef.child(image.name);
         imageRef.put(image);
-        return await imageRef.getDownloadURL();
+        const id = await imageRef.getDownloadURL();
+        return id;
+    },
+    async deleteImagefromStorage(fullpath: string) {
+        let splitedPath = fullpath.split('/');
+        let imgName = splitedPath[splitedPath.length - 1].split('?')[0];
+        let desertRef = storageRef.child(imgName);
+
+        desertRef.delete().then(() => {
+            console.log('deleted');
+        }).catch((error) => {
+            console.log(error)
+            // Uh-oh, an error occurred!
+        });
     }
 }
 
