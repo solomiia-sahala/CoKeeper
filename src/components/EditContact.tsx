@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useHistory, useParams, useLocation } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import classNames from 'classnames';
 
 import api from '../services/api';
@@ -15,7 +15,6 @@ const deleteIcon = '/images/delete-icon.svg';
 
 const EditContact = () => {
     const history = useHistory();
-    console.log(useLocation())
     const { id } = useParams<{ id: string }>();
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string>('');
@@ -195,7 +194,7 @@ const EditContact = () => {
                             />
                         </div>
                         <div className="delete-contact">
-                            <img src={deleteIcon} alt="delete icon"/>
+                            <img src={deleteIcon} alt="delete icon" />
                             <span>Delete contact</span>
                         </div>
                     </div>
