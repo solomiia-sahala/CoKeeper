@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+import classNames from 'classnames';
 
 import ContactCard from './ContactCard';
 
@@ -12,7 +13,8 @@ const Contacts = () => {
     }, [])
 
     return (
-        <div className="contacts-container" >
+        <div className={classNames('contacts-container', { 'small': users && users.length <= 3 })} >
+            {console.log(users?.length)}
             <h3>Contacts({users?.length})</h3>
             <div className="grid-contacts-container">
                 {users?.map(user => <ContactCard userContact={user} />)}
