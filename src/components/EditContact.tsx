@@ -16,7 +16,6 @@ const deleteIcon = '/images/delete-icon.svg';
 const EditContact = () => {
     const history = useHistory();
     const { id } = useParams<{ id: string }>();
-    const [isFavorite, setIsFavorite] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [image, setImage] = useState<any>(null);
     const [userInfo, setUserInfo] = useState({
@@ -35,7 +34,6 @@ const EditContact = () => {
     useEffect(() => {
         api.getContactById(id).then((res: any): void => {
             setUserInfo(res);
-            setIsFavorite(res.favorite);
             setImage(res.avatar)
         });
     }, [])
@@ -47,6 +45,7 @@ const EditContact = () => {
         avatar,
         position,
         jobTitle,
+        favorite,
         linkFacebook,
         linkLinkedin,
         linkTwitter,
@@ -72,7 +71,6 @@ const EditContact = () => {
         if (selectedImage) {
             await api.deleteImageFromStorage(avatar);
             let imgRef = await api.uploadAvatar(image);
-            console.log(imgRef);
             await api.updateContact(id, { 'avatar': imgRef });
         }
         history.push(`/aboutContact/${id}`);
@@ -83,7 +81,6 @@ const EditContact = () => {
     }
 
     const changeFavoriteStatus = () => {
-        setIsFavorite(!isFavorite);
         setUserInfo({ ...userInfo, "favorite": !userInfo.favorite });
     }
 
@@ -137,7 +134,7 @@ const EditContact = () => {
                                 onChange={handleChangeInput}
                             />
                         </div>
-                        <FavoriteIcon favorite={isFavorite} callback={changeFavoriteStatus} />
+                        <FavoriteIcon favorite={favorite} callback={changeFavoriteStatus} />
                     </div>
                     <div className="grid-container-add-info">
                         <div>

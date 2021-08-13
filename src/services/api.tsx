@@ -85,9 +85,9 @@ const api = {
     },
 
     async deleteImageFromStorage(fullpath: string):Promise<void> {
-        let splitedPath = fullpath.split('/');
-        let imgName = splitedPath[splitedPath.length - 1].split('?')[0];
-        let desertRef = storageRef.child(imgName);
+        const splitedPath = fullpath.split('/');
+        const imgName = splitedPath[splitedPath.length - 1].split('?')[0];
+        const desertRef = storageRef.child(imgName);
         return await desertRef.delete();
     }
 }
