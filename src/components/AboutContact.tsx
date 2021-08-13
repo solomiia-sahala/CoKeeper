@@ -52,7 +52,7 @@ const AboutContact = () => {
 
     return (
         <div>
-            <div className="header-about-contact">
+            <div className="header">
                 <h1>About Contact</h1>
             </div>
             <div className="about-contact">
