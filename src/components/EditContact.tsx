@@ -50,6 +50,7 @@ const EditContact = () => {
         linkLinkedin,
         linkTwitter,
     } = userInfo;
+
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     }
