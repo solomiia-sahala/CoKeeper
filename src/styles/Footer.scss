@@ -1,8 +1,10 @@
+@import "variables.scss";
+
 footer {
-  background-color: #2b7a78;
-  color: #feffff;
+  background-color: $dark-green;
+  color: $bg-color-light;
   height: 90px;
-  font-size: 26px;
+  font-size: $font-size-m-desktop;
   .footer-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -13,5 +15,11 @@ footer {
     div {
       margin-left: 20px;
     }
+  }
+}
+
+@include for-mobile {
+  footer {
+    display: none;
   }
 }
