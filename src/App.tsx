@@ -7,6 +7,7 @@ import ImportCSV from './components/ImportCSV';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutContact from './components/AboutContact';
+import EditContact from './components/EditContact';
 
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/newContact" component={NewContact} />
           <Route exact path="/importCSV" component={ImportCSV} />
           <Route path="/aboutContact/:id" component={AboutContact} />
+          <Route exact path="/editContact/:id" component={EditContact} />
         </Switch>
       </Router>
       <Footer />
