@@ -1,0 +1,15 @@
+@import "variables.scss";
+
+.view-icons {
+  .desktop {
+    @include for-mobile {
+      display: none;
+    }
+  }
+  .mobile {
+    display: none;
+    @include for-mobile {
+      display: block;
+    }
+  }
+}

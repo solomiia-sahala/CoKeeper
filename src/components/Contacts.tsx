@@ -14,8 +14,7 @@ const Contacts = () => {
 
     return (
         <div className={classNames('contacts-container', { 'small': users && users.length <= 3 })} >
-            {console.log(users?.length)}
-            <h3>Contacts({users?.length})</h3>
+            <h3>All contacts({users?.length})</h3>
             <div className="grid-contacts-container">
                 {users?.map(user => <ContactCard userContact={user} />)}
             </div>
