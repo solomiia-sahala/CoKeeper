@@ -78,10 +78,17 @@ const api = {
         return allFavorites;
     },
 
-    async uploadAvatar(image: any) {
+    async uploadAvatar(image: any):Promise<string> {
         const imageRef = storageRef.child(image.name);
-        await imageRef.put(image)
+        await imageRef.put(image);
         return await imageRef.getDownloadURL();
+    },
+
+    async deleteImageFromStorage(fullpath: string):Promise<void> {
+        const splitedPath = fullpath.split('/');
+        const imgName = splitedPath[splitedPath.length - 1].split('?')[0];
+        const desertRef = storageRef.child(imgName);
+        return await desertRef.delete();
     }
 }
 
