@@ -8,7 +8,6 @@ import View from './View';
 
 import '../styles/Favorites.scss';
 
-
 const Favorites = () => {
     const [favoriteContacts, setFavoriteContacts] = useState<any[] | null>(null);
     const [sortValue, setSortValue] = useState<number | null>(null);
