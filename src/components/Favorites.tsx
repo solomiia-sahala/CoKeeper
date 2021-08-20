@@ -11,8 +11,8 @@ import '../styles/Favorites.scss';
 
 const Favorites = () => {
     const [favoriteContacts, setFavoriteContacts] = useState<any[] | null>(null);
-    const [sortValue, setSortValue] = useState(null);
-    const [view, setView] = useState('list');
+    const [sortValue, setSortValue] = useState<number | null>(null);
+    const [view, setView] = useState('grid');
 
     useEffect(() => {
         api.getAllFavorites().then(res => setFavoriteContacts(res));
@@ -22,8 +22,8 @@ const Favorites = () => {
         setSortValue(e.target.value);
     }
 
-    const changeView = () => {
-        view === 'grid' ? setView('list') : setView('grid');
+    const changeView = (value: string) => {
+        setView(value);
     }
 
     return (
@@ -31,7 +31,10 @@ const Favorites = () => {
             <div className="grid-setting">
                 <h3>Favorite contacts({favoriteContacts?.length})</h3>
                 <DropDown callback={trigger} />
-                <View view={view} changeView={changeView} />
+                <View
+                    view={view}
+                    changeView={changeView}
+                />
             </div>
             <div className="grid-contacts-container">
                 {favoriteContacts?.map(user => <ContactCard key={user.id} userContact={user} />)}

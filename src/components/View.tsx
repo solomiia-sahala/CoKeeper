@@ -5,27 +5,32 @@ const viewGridGreyIcon = '/images/grid-grey.svg';
 const viewListGreenIcon = '/images/list-green.svg';
 const viewListGreyIcon = '/images/list-grey.svg';
 
-const View = ({ view, changeView }: { view: string, changeView: Function }) => {
+type ViewProps = {
+    view: string,
+    changeView: Function,
+}
+
+const View = ({ view, changeView }: ViewProps) => {
     return (
-        <div className="view-icons" onClick={() => changeView()}>
+        <div className="view-icons">
             {view === 'grid' ? (
                 <>
                     <div className="desktop">
-                        <img src={viewGridGreenIcon} />
-                        <img src={viewListGreyIcon} />
+                        <img src={viewGridGreenIcon} onClick={() => changeView('grid')} />
+                        <img src={viewListGreyIcon} onClick={() => changeView('list')} />
                     </div>
                     <div className="mobile">
-                        <img src={viewListGreenIcon} />
+                        <img src={viewGridGreenIcon} onClick={() => changeView('list')} />
                     </div>
                 </>
             ) : (
                 <>
                     <div className="desktop">
-                        <img src={viewGridGreyIcon} />
-                        <img src={viewListGreenIcon} />
+                        <img src={viewGridGreyIcon} onClick={() => changeView('grid')} />
+                        <img src={viewListGreenIcon} onClick={() => changeView('list')} />
                     </div>
                     <div className="mobile">
-                        <img src={viewGridGreenIcon} />
+                        <img src={viewListGreenIcon} onClick={() => changeView('grid')} />
                     </div>
                 </>
             )}

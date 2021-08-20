@@ -3,7 +3,7 @@ import '../styles/DropDown.scss';
 const DropDown = ({ callback }: { callback: Function }) => {
     return (
         <div className="dropdown">
-            <button><span>Sort by</span><img src="/images/filter.svg" alt="icon filter" /></button>
+            <button><span>Sort by </span><img src="/images/filter.svg" alt="icon filter" /></button>
             <div className="dropdown-content">
                 <ul>
                     <li value="0" onClick={(e) => callback(e)}>from A to Z</li>
