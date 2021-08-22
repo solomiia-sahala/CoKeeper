@@ -19,7 +19,7 @@ const Header = () => {
     let currentPath = window.location.pathname;
     // const { id }: Id = useParams();
     return (
-        <header className={classNames({ 'hide': currentPath === '/newContact' })}>
+        <header className={classNames({ 'hide': currentPath === '/newContact' || currentPath.includes('/editContact/')})}>
             <div className="header-container">
                 <div>
                     <a href="/" className="logo">
