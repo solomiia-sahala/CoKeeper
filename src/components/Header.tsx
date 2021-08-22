@@ -1,4 +1,3 @@
-import { useParams } from "react-router";
 import classNames from 'classnames';
 
 import NewContactButton from './NewContactButton';
@@ -11,15 +10,11 @@ const iconImportCSV = '/images/importCSV.svg';
 const iconHome = '/images/home.svg';
 const iconPeopleFavorite = '/images/people-favorite.svg';
 
-interface Id {
-    id?: string;
-}
-
 const Header = () => {
     let currentPath = window.location.pathname;
-    // const { id }: Id = useParams();
+
     return (
-        <header className={classNames({ 'hide': currentPath === '/newContact' || currentPath.includes('/editContact/')})}>
+        <header className={classNames({ 'hide': currentPath === '/newContact' || currentPath.includes('/editContact/') || currentPath.includes('/aboutContact/')})}>
             <div className="header-container">
                 <div>
                     <a href="/" className="logo">
