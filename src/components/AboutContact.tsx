@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 
 import SocialIcon from './SocialIcon';
+import Button from './Button';
 
 import api from '../services/api';
 
 import '../styles/AboutContact.scss';
+import FavoriteIcon from "./FavoriteIcon";
 
 interface Id {
     id?: string;
@@ -27,6 +29,7 @@ type UserDetails = {
 const AboutContact = () => {
     const { id }: Id = useParams();
     const [userData, setUserData] = useState<UserDetails | null>(null);
+    const history = useHistory();
 
     const {
         nameSurname,
@@ -49,6 +52,13 @@ const AboutContact = () => {
         }
     }, [id])
 
+    const redirectToHome = (): void => {
+        history.push('/');
+    }
+
+    const redirectToEdit = (): void => {
+        history.push(`/editContact/${id}`);
+    }
 
     return (
         <div>
@@ -62,21 +72,53 @@ const AboutContact = () => {
                 <div className="detail-info">
                     <h1>{nameSurname}</h1>
                     <h3>Mobile</h3>
-                    <p>{mobile}</p>
+                    <img className="icon-details-info" src="/images/mobile-phone.svg" alt="icon" />
+                    <span>{mobile}</span> <br />
                     <h3>Email</h3>
-                    <p>{email}</p>
+                    <img className="icon-details-info" src="/images/email.svg" alt="icon" />
+                    <span>{email}</span>
+                    <h2>Job details</h2>
                     <h3>Position</h3>
-                    <p>{position}</p>
+                    <img className="icon-details-info" src="/images/work-case.svg" alt="icon" />
+                    <span>{position}</span> <br />
                     <h3>Job title</h3>
-                    <p>{jobTitle}</p>
-                    <h3>Social links</h3>
-                    <SocialIcon href={linkFacebook} src="facebook.svg" name="icon facebook" />
-                    <SocialIcon href={linkLinkedin} src="linkedin.svg" name="icon linkedin" />
-                    <SocialIcon href={linkTwitter} src="twitter.svg" name="icon twitter" />
-                    <h3>Export to CSV</h3>
-                    <SocialIcon href="#" src="importCSV.svg" name="icon import CSV" />
+                    <img className="icon-details-info" src="/images/location-company.svg" alt="icon" />
+                    <span>{jobTitle}</span>
+                    <div className="social-links">
+                        <h4>Social links</h4>
+                        <SocialIcon href={linkFacebook} src="facebook.svg" name="icon facebook" />
+                        <SocialIcon href={linkLinkedin} src="linkedin.svg" name="icon linkedin" />
+                        <SocialIcon href={linkTwitter} src="twitter.svg" name="icon twitter" />
+                    </div>
+                    <div className="export-svg">
+                        <h3>Export to CSV</h3>
+                        <img id="desktop-export" src='/images/exportCSV.svg' alt="SVG export" />
+                        <img id="mobile-export" src='/images/export-icon.svg' alt="SVG export" />
+                    </div>
                 </div>
-
+                <div className="fav">
+                    <FavoriteIcon favorite={favorite ? favorite : false} />
+                </div>
+            </div>
+            <div className="buttons">
+                <div className="button-container">
+                    <Button
+                        type='button'
+                        value='Cancel'
+                        className='grey'
+                        src="/images/home.svg"
+                        callback={redirectToHome}
+                    />
+                </div>
+                <div className="button-container">
+                    <Button
+                        type='button'
+                        value='Edit'
+                        className='green'
+                        src="/images/edit.svg"
+                        callback={redirectToEdit}
+                    />
+                </div>
             </div>
         </div>
     )
