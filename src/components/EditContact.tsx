@@ -12,6 +12,7 @@ import '../styles/EditContact.scss';
 const star = '/images/star.svg';
 const editIcon = '/images/edit-icon.svg';
 const deleteIcon = '/images/delete-icon.svg';
+const noImage = '/images/noimage.png';
 
 const EditContact = () => {
     const history = useHistory();
@@ -70,7 +71,9 @@ const EditContact = () => {
         e.preventDefault();
         await api.updateContact(id, userInfo);
         if (selectedImage) {
-            await api.deleteImageFromStorage(avatar);
+            if (avatar) {
+                await api.deleteImageFromStorage(avatar);
+            }
             let imgRef = await api.uploadAvatar(image);
             await api.updateContact(id, { 'avatar': imgRef });
         }
@@ -85,6 +88,21 @@ const EditContact = () => {
         setUserInfo({ ...userInfo, "favorite": !userInfo.favorite });
     }
 
+    const deleteContact = async (e: any) => {
+        e.preventDefault();
+        await api.deleteContact(id);
+        redirectToHome();
+    }
+
+    const deleteAvatar = async (e: any) => {
+        e.preventDefault();
+        if (avatar) {
+            await api.deleteImageFromStorage(avatar);
+            await api.updateContact(id, { 'avatar': '' });
+            window.location.reload();
+        }
+    }
+
     return (
         <div>
             <div className="header">
@@ -95,11 +113,11 @@ const EditContact = () => {
                     <div className="grid-container-general-info">
                         <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
-                                <img src={selectedImage ? selectedImage : image} alt="no image" />
+                                <img src={selectedImage ? selectedImage : (image ? image : noImage)} alt="no image" />
                                 <img src={editIcon} alt="edit Icon" className="edit" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
-                            <button className="delete-avatar">Delete avatar</button>
+                            <button className="delete-avatar" onClick={deleteAvatar}>Delete avatar</button>
                         </div>
                         <div className="required-fields">
                             <p>General info <img src={star} alt="required fields" className="star-icon" /></p>
@@ -193,7 +211,7 @@ const EditContact = () => {
                         </div>
                         <div className="delete-contact">
                             <img src={deleteIcon} alt="delete icon" />
-                            <span>Delete contact</span>
+                            <span onClick={deleteContact}>Delete contact</span>
                         </div>
                     </div>
                 </div>
