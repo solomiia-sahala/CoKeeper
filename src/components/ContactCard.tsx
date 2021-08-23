@@ -36,7 +36,7 @@ const ContactCard = ({ userContact }: UserContactProps) => {
             <h3>{nameSurname}</h3>
             <div className="contact-info">
                 <img src="./images/job.svg" alt="icon job" />
-                {`${position}, ${jobTitle}`}
+                {`${position || 'Unknown position'}, ${jobTitle || ''}`}
             </div>
             <div className="contact-info mobile">
                 <img src="./images/mobile-phone.svg" alt="icon mobile" />
