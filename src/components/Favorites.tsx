@@ -2,37 +2,20 @@ import { useState, useEffect } from 'react';
 import api from '../services/api';
 
 import ContactCard from './ContactCard';
-import DropDown from './DropDown';
-import View from './View';
 
 import '../styles/Favorites.scss';
 
 const Favorites = () => {
     const [favoriteContacts, setFavoriteContacts] = useState<any[] | null>(null);
-    const [sortValue, setSortValue] = useState<number | null>(null);
-    const [view, setView] = useState('grid');
 
     useEffect(() => {
         api.getAllFavorites().then(res => setFavoriteContacts(res));
     }, [])
 
-    const trigger = (e: any) => {
-        setSortValue(e.target.value);
-    }
-
-    const changeView = (value: string) => {
-        setView(value);
-    }
-
     return (
         <div className="contacts-container">
             <div className="grid-setting">
                 <h3>Favorite contacts({favoriteContacts?.length})</h3>
-                <DropDown callback={trigger} />
-                <View
-                    view={view}
-                    changeView={changeView}
-                />
             </div>
             <div className="grid-contacts-container">
                 {favoriteContacts?.map(user => <ContactCard key={user.id} userContact={user} />)}
