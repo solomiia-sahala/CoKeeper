@@ -40,7 +40,7 @@ const ContactCard = ({ userContact }: UserContactProps) => {
             </div>
             <div className="contact-info mobile">
                 <img src="./images/mobile-phone.svg" alt="icon mobile" />
-                <span>{`${mobileNum.slice(0, 3)}-${mobileNum.slice(2, 6)}-${mobileNum.slice(6)}`}</span>
+                <span>{`${mobileNum.slice(0, 3)}-${mobileNum.slice(3, 7)}-${mobileNum.slice(7)}`}</span>
             </div>
             {favorite && <img src={favoriteIcon} className="fav-icon" alt="favorite icon" />}
         </div>

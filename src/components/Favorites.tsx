@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
-import classNames from 'classnames';
 
 import ContactCard from './ContactCard';
 import DropDown from './DropDown';
@@ -26,7 +25,7 @@ const Favorites = () => {
     }
 
     return (
-        <div className={classNames('contacts-container', { 'small': favoriteContacts && favoriteContacts?.length <= 3 })} >
+        <div className="contacts-container">
             <div className="grid-setting">
                 <h3>Favorite contacts({favoriteContacts?.length})</h3>
                 <DropDown callback={trigger} />
