@@ -13,8 +13,12 @@ const iconPeopleFavorite = '/images/people-favorite.svg';
 const Header = () => {
     let currentPath = window.location.pathname;
 
+    let classNameHeader = {
+        hide: currentPath === '/newContact' || currentPath.includes('/editContact/') || currentPath.includes('/aboutContact/')
+    };
+
     return (
-        <header className={classNames({ 'hide': currentPath === '/newContact' || currentPath.includes('/editContact/') || currentPath.includes('/aboutContact/')})}>
+        <header className={classNames(classNameHeader)}>
             <div className="header-container">
                 <div>
                     <a href="/" className="logo">

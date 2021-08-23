@@ -60,6 +60,7 @@ const AboutContact = () => {
         history.push(`/editContact/${id}`);
     }
 
+    const mobileNum = mobile?.toString();
     return (
         <div>
             <div className="header">
@@ -73,17 +74,17 @@ const AboutContact = () => {
                     <h1>{nameSurname}</h1>
                     <h3>Mobile</h3>
                     <img className="icon-details-info" src="/images/mobile-phone.svg" alt="icon" />
-                    <span>{mobile}</span> <br />
+                    <span>{`${mobileNum?.slice(0, 3)}-${mobileNum?.slice(3, 7)}-${mobileNum?.slice(7)}`}</span> <br />
                     <h3>Email</h3>
                     <img className="icon-details-info" src="/images/email.svg" alt="icon" />
                     <span>{email}</span>
                     <h2>Job details</h2>
                     <h3>Position</h3>
                     <img className="icon-details-info" src="/images/work-case.svg" alt="icon" />
-                    <span>{position}</span> <br />
+                    <span>{position || 'Not specified'}</span> <br />
                     <h3>Job title</h3>
                     <img className="icon-details-info" src="/images/location-company.svg" alt="icon" />
-                    <span>{jobTitle}</span>
+                    <span>{jobTitle || 'Not specified'}</span>
                     <div className="social-links">
                         <h4>Social links</h4>
                         <SocialIcon href={linkFacebook} src="facebook.svg" name="icon facebook" />
@@ -92,12 +93,12 @@ const AboutContact = () => {
                     </div>
                     <div className="export-svg">
                         <h3>Export to CSV</h3>
-                        <img id="desktop-export" src='/images/exportCSV.svg' alt="SVG export" />
-                        <img id="mobile-export" src='/images/export-icon.svg' alt="SVG export" />
+                        <img className="desktop-export" src='/images/exportCSV.svg' alt="SVG export" />
+                        <img className="mobile-export" src='/images/export-icon.svg' alt="SVG export" />
                     </div>
                 </div>
                 <div className="fav">
-                    <FavoriteIcon favorite={favorite ? favorite : false} />
+                    <FavoriteIcon favorite={!!favorite} />
                 </div>
             </div>
             <div className="buttons">
