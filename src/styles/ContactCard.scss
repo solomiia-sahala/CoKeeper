@@ -3,7 +3,7 @@
 .contact-card-container {
   position: relative;
   height: 330px;
-  width: 420px;
+  width: 460px;
   border: 1px solid $light-green;
   box-shadow: 0 4px 4px $light-grey;
   margin: 5px;
@@ -17,7 +17,7 @@
 
   .avatar {
     height: 204px;
-    width: 420px;
+    width: 460px;
     object-fit: cover;
 
     @include for-mobile {
@@ -59,7 +59,7 @@
   .fav-icon {
     position: absolute;
     top: 204px;
-    right: 30px;
+    right: 20px;
 
     @include for-mobile {
       height: 34px;
