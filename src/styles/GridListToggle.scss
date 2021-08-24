@@ -1,0 +1,37 @@
+@import "variables.scss";
+
+.view-icons {
+  position: absolute;
+  top: 103px;
+  right: 25px;
+  .gridView {
+    height: 39px;
+    width: 39px;
+    -webkit-mask: url(../grid.svg) no-repeat center;
+    mask: url(../grid.svg) no-repeat center;
+  }
+  .listView {
+    margin-left: 8px;
+    height: 39px;
+    width: 39px;
+    -webkit-mask: url(../list.svg) no-repeat center;
+    mask: url(../list.svg) no-repeat center;
+  }
+  .green {
+    background-color: $dark-green;
+  }
+  .grey {
+    background-color: $grey;
+  }
+  .desktop {
+    @include for-mobile {
+      display: none;
+    }
+  }
+  .mobile {
+    display: none;
+    @include for-mobile {
+      display: block;
+    }
+  }
+}
