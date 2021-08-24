@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, FormEvent, ChangeEvent, MouseEvent } from 'react';
 import { useHistory, useParams } from 'react-router';
 import classNames from 'classnames';
 
@@ -70,7 +70,9 @@ const EditContact = () => {
         e.preventDefault();
         await api.updateContact(id, userInfo);
         if (selectedImage) {
-            await api.deleteImageFromStorage(avatar);
+            if (avatar) {
+                await api.deleteImageFromStorage(avatar);
+            }
             let imgRef = await api.uploadAvatar(image);
             await api.updateContact(id, { 'avatar': imgRef });
         }
@@ -83,6 +85,21 @@ const EditContact = () => {
 
     const changeFavoriteStatus = () => {
         setUserInfo({ ...userInfo, "favorite": !userInfo.favorite });
+    }
+
+    const deleteContact = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        await api.deleteContact(id);
+        redirectToHome();
+    }
+
+    const deleteAvatar = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (avatar) {
+            await api.deleteImageFromStorage(avatar);
+            await api.updateContact(id, { 'avatar': '' });
+            window.location.reload();
+        }
     }
 
     return (
@@ -99,7 +116,7 @@ const EditContact = () => {
                                 <img src={editIcon} alt="edit Icon" className="edit" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
-                            <button className="delete-avatar">Delete avatar</button>
+                            <button className="delete-avatar" onClick={deleteAvatar}>Delete avatar</button>
                         </div>
                         <div className="required-fields">
                             <p>General info <img src={star} alt="required fields" className="star-icon" /></p>
@@ -193,7 +210,7 @@ const EditContact = () => {
                         </div>
                         <div className="delete-contact">
                             <img src={deleteIcon} alt="delete icon" />
-                            <span>Delete contact</span>
+                            <span onClick={deleteContact}>Delete contact</span>
                         </div>
                     </div>
                 </div>
