@@ -1,0 +1,73 @@
+@import "variables.scss";
+
+div {
+  .info-details {
+    width: 97%;
+    height: 30px;
+    background-color: $light-green;
+    display: grid;
+    grid-template-columns: 33% 3% 29% 12%;
+    margin: auto;
+    margin-bottom: 15px;
+    div {
+      margin: auto;
+    }
+    @include for-mobile {
+      display: none;
+    }
+  }
+
+  .list-grid-view {
+    border: 1px solid $light-green;
+    box-shadow: 0 4px 4px $light-grey;
+    width: 97%;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    background-color: $bg-color-light;
+    margin: auto;
+    margin-bottom: 10px;
+
+    @include for-mobile {
+      grid-template-columns: 40% 60%;
+      height: 155px;
+    }
+    .list-avatar {
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+        margin: 2px 4px;
+        @include for-mobile {
+          margin-left: 70px;
+          margin-top: 25px;
+        }
+      }
+    }
+    .list-grid-details {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      position: relative;
+      @include for-mobile {
+        display: block;
+      }
+      div {
+        @include for-mobile {
+          padding-bottom: 5px;
+        }
+      }
+
+      .list-name-surname {
+        font-size: $font-size-m-desktop;
+        font-weight: 600;
+        padding: 9px 0;
+      }
+      .list-favorite {
+        position: absolute;
+        top: 0;
+        right: 30px;
+      }
+    }
+  }
+}
