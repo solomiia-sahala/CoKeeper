@@ -14,7 +14,7 @@ interface UserContactProps {
         id: number,
         linkFacebook: string,
         linkLinkedin: string,
-        linkTwitte: string,
+        linkTwitter: string,
     }
 }
 

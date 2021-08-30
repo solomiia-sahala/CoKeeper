@@ -6,8 +6,22 @@ import GridListToggle from './GridListToggle';
 
 import '../styles/Contacts.scss';
 
+type UserData = {
+    nameSurname: string,
+    mobile: number,
+    email: string,
+    position: string,
+    jobTitle: string,
+    favorite: boolean,
+    avatar: string,
+    id: number,
+    linkFacebook: string,
+    linkLinkedin: string,
+    linkTwitter: string,
+}
+
 const Contacts = () => {
-    const [users, setUsers] = useState<any[] | null>(null);
+    const [users, setUsers] = useState<UserData[] | null>(null);
     const [viewOption, setViewOption] = useState<string>('grid');
 
     useEffect(() => {
