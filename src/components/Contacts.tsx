@@ -8,7 +8,7 @@ import '../styles/Contacts.scss';
 
 const Contacts = () => {
     const [users, setUsers] = useState<any[] | null>(null);
-    const [viewOption, setViewOption] = useState('grid');
+    const [viewOption, setViewOption] = useState<string>('grid');
 
     useEffect(() => {
         api.getAllContacts().then((result) => setUsers(result))
@@ -30,7 +30,7 @@ const Contacts = () => {
                     {users?.map(user => <ContactCard key={user.id} userContact={user} />)}
                 </div>) : 'list view' // will be implemented in ListCardView component
             }
-        </div >
+        </div>
     )
 }
 
