@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import '../styles/ContactCard.scss';
 
 import { addDashesToNumber } from './ListContactCard';
+
 interface UserContactProps {
     userContact: {
         nameSurname: string,
