@@ -12,6 +12,7 @@ import '../styles/EditContact.scss';
 const star = '/images/star.svg';
 const editIcon = '/images/edit-icon.svg';
 const deleteIcon = '/images/delete-icon.svg';
+const noImage = '/images/notfound.png';
 
 const EditContact = () => {
     const history = useHistory();
@@ -98,7 +99,7 @@ const EditContact = () => {
         if (avatar) {
             await api.deleteImageFromStorage(avatar);
             await api.updateContact(id, { 'avatar': '' });
-            window.location.reload();
+            setImage(null);
         }
     }
 
@@ -112,7 +113,7 @@ const EditContact = () => {
                     <div className="grid-container-general-info">
                         <div className={classNames("img", { 'shadow': selectedImage })}>
                             <label htmlFor="file-input">
-                                <img src={selectedImage ? selectedImage : image} alt="no image" />
+                                <img src={selectedImage ? selectedImage : (image || noImage)} alt="no image" />
                                 <img src={editIcon} alt="edit Icon" className="edit" />
                             </label>
                             <input id="file-input" name="avatar" type="file" onChange={handleChangeImage} />
