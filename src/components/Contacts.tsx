@@ -12,8 +12,8 @@ const Contacts = () => {
     }, [])
 
     return (
-        <div className="contacts-container" >
-            <h3>Contacts({users?.length})</h3>
+        <div className="contacts-container">
+            <h3>All contacts({users?.length})</h3>
             <div className="grid-contacts-container">
                 {users?.map(user => <ContactCard key={user.id} userContact={user} />)}
             </div>
