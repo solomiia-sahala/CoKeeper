@@ -1,10 +1,16 @@
 @import "variables.scss";
 
-.grid-contacts-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  @include for-mobile {
+.contacts-container {
+  min-height: 76vh;
+  h3 {
+    margin-left: 5px;
+  }
+  .grid-contacts-container {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+    @include for-mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
