@@ -2,8 +2,14 @@
 
 .contacts-container {
   min-height: 76vh;
+  position: relative;
   h3 {
     margin-left: 5px;
+  }
+  .sorting-menu {
+    position: absolute;
+    top: 0;
+    right: 25px;
   }
   .grid-contacts-container {
     display: grid;

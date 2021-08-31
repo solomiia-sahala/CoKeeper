@@ -23,14 +23,13 @@ type UserContact = {
 
 const Contacts = () => {
     const [users, setUsers] = useState<UserContact[] | null>(null);
-    // const [sortValue, setSortValue] = useState<number | null>(null);
 
     useEffect(() => {
         api.getAllContacts().then((result) => setUsers(result))
     }, [])
 
     const setSortOption = (sortOption: number) => {
-        let usersCopy = users;
+        let usersCopy = [...users!];
         let sortedArr = usersCopy?.sort((a, b) => {
             let objA = a.nameSurname.toUpperCase();
             let objB = b.nameSurname.toUpperCase()
@@ -39,11 +38,13 @@ const Contacts = () => {
         });
         setUsers(sortedArr!);
     }
-console.log(users)
+
     return (
         <div className="contacts-container" >
             <h3>All contacts({users?.length})</h3>
-            <SortingMenu callback={setSortOption} />
+            <div className="sorting-menu">
+                <SortingMenu callback={setSortOption} />
+            </div>
             {/* grid view, depends from chosen option, will be displayed one view */}
             <div className="grid-contacts-container">
                 {users?.map(user => <ContactCard key={user.id} userContact={user} />)}

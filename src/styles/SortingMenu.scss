@@ -45,14 +45,18 @@
 
   li {
     display: block;
-    color: #000000;
+    color: $dark-grey;
     padding: 5px;
     list-style-type: none;
     font-size: $font-size-m-mobile;
 
     &:hover {
-      color: #ffffff;
+      color: $bg-color-light;
       background-color: $mint;
     }
+  }
+  .selected {
+    color: $bg-color-light;
+    background-color: $dark-green;
   }
 }
