@@ -10,6 +10,9 @@
     position: absolute;
     top: 0;
     right: 25px;
+    @include for-mobile {
+      right: 45px;
+    }
   }
   .grid-contacts-container {
     display: grid;
