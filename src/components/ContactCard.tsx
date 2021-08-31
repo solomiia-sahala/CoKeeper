@@ -2,6 +2,8 @@ import { useHistory } from 'react-router';
 
 import '../styles/ContactCard.scss';
 
+import { addDashesToNumber } from './ListContactCard';
+
 interface UserContactProps {
     userContact: {
         nameSurname: string,
@@ -24,7 +26,6 @@ const ContactCard = ({ userContact }: UserContactProps) => {
     const history = useHistory();
     const favoriteIcon = "./images/favorite.svg";
     const { nameSurname, position, jobTitle, mobile, favorite, avatar, id } = userContact;
-    const mobileNum = mobile.toString();
 
     const redirectToDetailsPage = (): void => {
         history.push(`/aboutContact/${id}`);
@@ -40,7 +41,7 @@ const ContactCard = ({ userContact }: UserContactProps) => {
             </div>
             <div className="contact-info mobile">
                 <img src="./images/mobile-phone.svg" alt="icon mobile" />
-                <span>{`${mobileNum.slice(0, 3)}-${mobileNum.slice(3, 7)}-${mobileNum.slice(7)}`}</span>
+                <span>{addDashesToNumber(mobile)}</span>
             </div>
             {favorite && <img src={favoriteIcon} className="fav-icon" alt="favorite icon" />}
         </div>

@@ -3,8 +3,14 @@ import api from '../services/api';
 
 import ContactCard from './ContactCard';
 import GridListToggle from './GridListToggle';
+import ListContactCard from './ListContactCard';
 
 import '../styles/Contacts.scss';
+
+enum ViewType {
+    GRID = "grid",
+    LIST = "list"
+}
 
 type UserData = {
     nameSurname: string,
@@ -22,7 +28,7 @@ type UserData = {
 
 const Contacts = () => {
     const [users, setUsers] = useState<UserData[] | null>(null);
-    const [viewOption, setViewOption] = useState<string>('grid');
+    const [viewOption, setViewOption] = useState<string>(ViewType.GRID);
 
     useEffect(() => {
         api.getAllContacts().then((result) => setUsers(result))
@@ -39,11 +45,20 @@ const Contacts = () => {
                 viewOption={viewOption}
                 changeView={changeView}
             />
-            {viewOption === 'grid' ? (
+            {viewOption === ViewType.GRID ? (
                 < div className="grid-contacts-container">
                     {users?.map(user => <ContactCard key={user.id} userContact={user} />)}
-                </div>) : 'list view' // will be implemented in ListCardView component
-            }
+                </div>) : (
+                <div className="list-view">
+                    <div className="info-details">
+                        <div>Name&Surname</div>
+                        <div>Mobile</div>
+                        <div>Email</div>
+                        <div>Position&Job Title</div>
+                    </div>
+                    {users?.map(user => <ListContactCard key={user.id} userContact={user} />)}
+                </div>
+            )}
         </div>
     )
 }
