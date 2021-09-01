@@ -1,5 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 
+import '../styles/Search.scss';
+
 const Search = ({ callback }: { callback: Function }) => {
 
     const [inputValue, setInputValue] = useState<string>('');
