@@ -21,5 +21,14 @@
     @include for-mobile {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    .no-contact {
+      font-size: $font-size-m-desktop;
+      color: $dark-grey;
+      margin-left: 25px;
+      @include for-mobile {
+        font-size: $font-size-m-mobile;
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/SortingMenu.scss';
 
-enum SortOptions {
+export enum SortOptions {
     fromAtoZ,
     fromZtoA
 }
