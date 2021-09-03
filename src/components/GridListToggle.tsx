@@ -1,6 +1,10 @@
-import '../styles/GridListToggle.scss';
+import { ReactComponent as GridIcon } from '../images/grid.svg';
+import { ReactComponent as ListIcon } from '../images/list.svg';
+import classNames from 'classnames';
 
 import { ViewType } from './Contacts';
+
+import '../styles/GridListToggle.scss';
 
 type ViewProps = {
     viewOption: string,
@@ -10,27 +14,15 @@ type ViewProps = {
 const GridListToggle = ({ viewOption, changeView }: ViewProps) => {
     return (
         <div className="view-icons">
-            {viewOption === ViewType.GRID ? (
-                <>
-                    <div className="desktop">
-                        <button className="gridView green" onClick={() => changeView(ViewType.GRID)} />
-                        <button className="listView grey" onClick={() => changeView(ViewType.LIST)} />
-                    </div>
-                    <div className="mobile">
-                        <button className="gridView green" onClick={() => changeView(ViewType.LIST)} />
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className="desktop">
-                        <button className="gridView grey" onClick={() => changeView(ViewType.GRID)} />
-                        <button className="listView green" onClick={() => changeView(ViewType.LIST)} />
-                    </div>
-                    <div className="mobile">
-                        <button className="listView green" onClick={() => changeView(ViewType.GRID)} />
-                    </div>
-                </>
-            )}
+            <div className="desktop">
+                <GridIcon className={classNames("greyIcon", { 'greenIcon': viewOption === ViewType.GRID })} onClick={() => changeView(ViewType.GRID)} />
+                <ListIcon className={classNames("greyIcon", { 'greenIcon': viewOption === ViewType.LIST })} onClick={() => changeView(ViewType.LIST)} />
+            </div>
+            <div className="mobile">
+                {viewOption === ViewType.GRID ?
+                    <GridIcon className="greenIcon" onClick={() => changeView(ViewType.LIST)} /> :
+                    <ListIcon className="greenIcon" onClick={() => changeView(ViewType.GRID)} />}
+            </div>
         </div>
     )
 }

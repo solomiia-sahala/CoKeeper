@@ -47,20 +47,22 @@ const Contacts = () => {
         setFilteredUsers(filteredArr!);
     }
 
+    const checkFilteredUsers = filteredUsers || users;
+    const noResults = <span className="no-contact">No contact found...</span>;
+
     return (
         <>
             <Search callback={getSearchParam} />
             <div className="contacts-container" >
-                <h3>All contacts({users?.length})</h3>
+                <h3>All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
                 <GridListToggle
                     viewOption={viewOption}
                     changeView={changeView}
                 />
                 {viewOption === ViewType.GRID ? (
                     <div className="grid-contacts-container">
-                        {filteredUsers ?
-                            (filteredUsers.length ? filteredUsers.map(user => <ContactCard key={user.id} userContact={user} />) : <span className="no-contact">No contact found...</span>) :
-                            users?.map(user => <ContactCard key={user.id} userContact={user} />)}
+                        {checkFilteredUsers?.map(user => <ContactCard key={user.id} userContact={user} />)}
+                        {filteredUsers?.length === 0 && noResults}
                     </div>
                 ) : (
                     <div className="list-view">
@@ -70,9 +72,8 @@ const Contacts = () => {
                             <div>Email</div>
                             <div>Position&Job Title</div>
                         </div>
-                        {filteredUsers ?
-                            (filteredUsers.length ? filteredUsers.map(user => <ListContactCard key={user.id} userContact={user} />) : <span className="no-contact">No contact found...</span>) :
-                            users?.map(user => <ListContactCard key={user.id} userContact={user} />)}
+                        {checkFilteredUsers?.map(user => <ListContactCard key={user.id} userContact={user} />)}
+                        {filteredUsers?.length === 0 && noResults}
                     </div>
                 )}
             </div>
