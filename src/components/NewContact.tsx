@@ -24,7 +24,7 @@ type ContactData = {
 }
 
 const NewContact = () => {
-    const [image, setImage] = useState<any>(null);
+    const [image, setImage] = useState<File | null>(null);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isFavorite, setIsFavorite] = useState(false);
     const [contactInfo, setContactInfo] = useState<ContactData>({
@@ -42,14 +42,13 @@ const NewContact = () => {
     const history = useHistory();
 
     const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files == null) {
-            throw new Error("Error finding e.target.files");
+        const imageFile = e.target?.files?.[0];
+        if (imageFile) {
+            setSelectedImage(URL.createObjectURL(imageFile))
+            setImage(imageFile);
+        } else {
+            throw new Error("Image file is missing");
         }
-        if (e.target.files[0]) {
-            setSelectedImage(URL.createObjectURL(e.target.files[0]))
-            setImage(e.target.files[0]);
-        }
-
     }
 
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,0 +1,31 @@
+@import "../styles/variables.scss";
+
+.import-csv {
+    min-height: 74vh;
+  input {
+    margin-left: 25px;
+  }
+  button {
+    font-family: $title-font;
+    border: solid 1px $bg-color-light;
+    cursor: pointer;
+    background: $dark-green;
+    font-size: $font-size-s-desktop;
+    color: $bg-color-light;
+    padding: 8px 20px;
+    margin: 15px;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+    @include for-mobile {
+      font-size: 12px;
+    }
+  }
+
+  button:hover {
+    opacity: 0.33;
+    font-size: $font-size-m-desktop;
+    @include for-mobile {
+      font-size: 12px;
+    }
+  }
+}
