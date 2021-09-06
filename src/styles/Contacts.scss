@@ -3,15 +3,16 @@
 .contacts-container {
   min-height: 76vh;
   position: relative;
-  h3 {
-    margin-left: 5px;
+  .header-contacts {
+    margin-left: 30px;
   }
   .sorting-menu {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 161px;
     @include for-mobile {
-      right: 45px;
+      right: 65px;
+      top: -10px;
     }
   }
   .grid-contacts-container {

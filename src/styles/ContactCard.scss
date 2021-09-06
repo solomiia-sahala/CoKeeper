@@ -11,8 +11,8 @@
   cursor: pointer;
 
   @include for-mobile {
-    height: 155px;
-    width: 155px;
+    max-height: 166px;
+    width: 90%;
   }
 
   .avatar {

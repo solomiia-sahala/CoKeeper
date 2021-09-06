@@ -2,8 +2,11 @@
 
 .view-icons {
   position: absolute;
-  top: 7px;
-  right: 160px;
+  top: 0;
+  right: 60px;
+  @include for-mobile {
+    right: 20px;
+  }
 
   svg {
     height: 39px;

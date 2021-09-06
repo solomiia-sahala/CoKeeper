@@ -16,7 +16,7 @@ export enum ViewType {
     LIST = "list"
 }
 
-type UserContact = {
+export type UserContact = {
     nameSurname: string,
     mobile: number,
     email: string,
@@ -68,7 +68,7 @@ const Contacts = () => {
         <>
             <Search callback={getSearchParam} />
             <div className="contacts-container" >
-                <h3>All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
+                <h3 className="header-contacts">All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
                 <div className="sorting-menu">
                     <SortingMenu callback={setSortOption} />
                 </div>
