@@ -5,10 +5,16 @@ import { SortOptions } from './SortingMenu';
 
 import ContactCard from './ContactCard';
 import SortingMenu from './SortingMenu';
+import GridListToggle from './GridListToggle';
 import ListContactCard from './ListContactCard';
 import Search from './Search';
 
 import '../styles/Contacts.scss';
+
+export enum ViewType {
+    GRID = "grid",
+    LIST = "list"
+}
 
 type UserContact = {
     nameSurname: string,
@@ -21,11 +27,12 @@ type UserContact = {
     id: number,
     linkFacebook: string,
     linkLinkedin: string,
-    linkTwitter: string
+    linkTwitter: string,
 }
 
 const Contacts = () => {
     const [users, setUsers] = useState<UserContact[] | null>(null);
+    const [viewOption, setViewOption] = useState<ViewType>(ViewType.GRID);
     const [filteredUsers, setFilteredUsers] = useState<UserContact[] | null>(null);
 
     useEffect(() => {
@@ -42,6 +49,10 @@ const Contacts = () => {
         });
         setUsers(sortedArr!);
     }
+    
+    const changeView = (value: ViewType) => {
+        setViewOption(value);
+    }
 
     const getSearchParam = (text: string) => {
         let filteredArr = users?.filter((user) => {
@@ -50,31 +61,39 @@ const Contacts = () => {
         setFilteredUsers(filteredArr!);
     }
 
+    const checkFilteredUsers = filteredUsers || users;
+    const noResults = <span className="no-contact">No contact found...</span>;
+
     return (
         <>
             <Search callback={getSearchParam} />
             <div className="contacts-container" >
-                <h3>All contacts({users?.length})</h3>
+                <h3>All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
                 <div className="sorting-menu">
                     <SortingMenu callback={setSortOption} />
                 </div>
-                {/* grid view, depends from chosen option, will be displayed one view */}
-                <div className="grid-contacts-container">
-                    {filteredUsers ?
-                        (filteredUsers.length ? filteredUsers.map(user => <ContactCard key={user.id} userContact={user} />) : <span className="no-contact">No contact found...</span>) :
-                        users?.map(user => <ContactCard key={user.id} userContact={user} />)}
-                </div>
-                {/* list view */}
-                <div className="list-view">
-                    <div className="info-details">
-                        <div>Name&Surname</div>
-                        <div>Mobile</div>
-                        <div>Email</div>
-                        <div>Position&Job Title</div>
+                <GridListToggle
+                    viewOption={viewOption}
+                    changeView={changeView}
+                />
+                {viewOption === ViewType.GRID ? (
+                    <div className="grid-contacts-container">
+                        {checkFilteredUsers?.map(user => <ContactCard key={user.id} userContact={user} />)}
+                        {filteredUsers?.length === 0 && noResults}
                     </div>
-                    {users?.map(user => <ListContactCard key={user.id} userContact={user} />)}
-                </div>
-            </div >
+                ) : (
+                    <div className="list-view">
+                        <div className="info-details">
+                            <div>Name&Surname</div>
+                            <div>Mobile</div>
+                            <div>Email</div>
+                            <div>Position&Job Title</div>
+                        </div>
+                        {checkFilteredUsers?.map(user => <ListContactCard key={user.id} userContact={user} />)}
+                        {filteredUsers?.length === 0 && noResults}
+                    </div>
+                )}
+            </div>
         </>
     )
 }
