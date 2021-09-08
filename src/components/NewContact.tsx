@@ -15,7 +15,7 @@ type ContactData = {
     nameSurname: string,
     mobile: number | null,
     email: string,
-    avatar: any,
+    avatar: string | null,
     position: string,
     jobTitle: string,
     linkFacebook: string,
@@ -57,8 +57,10 @@ const NewContact = () => {
 
     const onSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        let imageRef = await api.uploadAvatar(image);
+        let imageRef = null;
+        if (image) {
+            imageRef = await api.uploadAvatar(image);
+        }
 
         let userRef = await api.createContact(contactInfo);
 
