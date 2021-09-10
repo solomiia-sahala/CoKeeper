@@ -2,22 +2,18 @@
 
 .contact-card-container {
   position: relative;
-  height: 330px;
-  width: 460px;
   border: 1px solid $light-green;
   box-shadow: 0 4px 4px $light-grey;
-  margin: 5px;
   color: $dark-grey;
   cursor: pointer;
 
   @include for-mobile {
     height: 155px;
-    width: 155px;
   }
 
   .avatar {
     height: 204px;
-    width: 460px;
+    width: 100%;
     object-fit: cover;
 
     @include for-mobile {
@@ -71,7 +67,7 @@
 
   .contact-info {
     font-family: $main-font;
-    font-size: $font-size-s-desktop;
+    font-size: 1.6vw;
     padding: 5px;
 
     @include for-mobile {
@@ -80,6 +76,7 @@
 
     img {
       margin-left: 10px;
+      margin-right: 5px;
 
       @include for-mobile {
         display: none;
@@ -88,12 +85,8 @@
   }
 
   .mobile {
-    img {
-      margin-right: 15px;
-    }
     span {
-      display: inline-block;
-      vertical-align: top;
+      vertical-align: super;
     }
   }
 }

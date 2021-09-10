@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
 
-import { SortOptions } from './SortingMenu';
-
 import ContactCard from './ContactCard';
-import SortingMenu from './SortingMenu';
+import SortingMenu, { SortOptions } from './SortingMenu';
 import GridListToggle from './GridListToggle';
 import ListContactCard from './ListContactCard';
 import Search from './Search';
@@ -49,7 +47,7 @@ const Contacts = () => {
         });
         setUsers(sortedArr!);
     }
-    
+
     const changeView = (value: ViewType) => {
         setViewOption(value);
     }
@@ -68,14 +66,16 @@ const Contacts = () => {
         <>
             <Search callback={getSearchParam} />
             <div className="contacts-container" >
-                <h3>All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
-                <div className="sorting-menu">
-                    <SortingMenu callback={setSortOption} />
+                <div className="flex-container">
+                    <h3>All contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
+                    <div className="sorting-menu">
+                        <SortingMenu callback={setSortOption} />
+                    </div>
+                    <GridListToggle
+                        viewOption={viewOption}
+                        changeView={changeView}
+                    />
                 </div>
-                <GridListToggle
-                    viewOption={viewOption}
-                    changeView={changeView}
-                />
                 {viewOption === ViewType.GRID ? (
                     <div className="grid-contacts-container">
                         {checkFilteredUsers?.map(user => <ContactCard key={user.id} userContact={user} />)}
