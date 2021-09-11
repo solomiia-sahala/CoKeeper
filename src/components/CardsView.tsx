@@ -48,14 +48,16 @@ const CardsView = ({ users }: { users: UserContact[] | null }) => {
         <>
             <Search callback={getSearchParam} />
             <div className="contacts-container">
-                <h3 className="header-contacts">Favorite contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
-                <div className="sorting-menu">
-                    <SortingMenu callback={setSortOption} />
+                <div className="flex-container">
+                    <h3 className="header-contacts">Favorite contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
+                    <div className="sorting-menu">
+                        <SortingMenu callback={setSortOption} />
+                    </div>
+                    <GridListToggle
+                        viewOption={viewOption}
+                        changeView={changeView}
+                    />
                 </div>
-                <GridListToggle
-                    viewOption={viewOption}
-                    changeView={changeView}
-                />
                 {viewOption === ViewType.GRID ? (
                     <div className="grid-contacts-container">
                         {checkFilteredUsers?.map(user => <ContactCard key={user.id} userContact={user} />)}
