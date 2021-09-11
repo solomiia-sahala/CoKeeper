@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+
+import {SortOptions} from '../enums/Enums'; 
+
 import '../styles/SortingMenu.scss';
 
-export enum SortOptions {
-    fromAtoZ,
-    fromZtoA
-}
 
 const SortingMenu = ({ callback }: { callback: Function }) => {
     const [selectedItem, setSelectedItem] = useState<number | null>(null);

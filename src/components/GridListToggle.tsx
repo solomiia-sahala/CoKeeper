@@ -2,7 +2,7 @@ import { ReactComponent as GridIcon } from '../images/grid.svg';
 import { ReactComponent as ListIcon } from '../images/list.svg';
 import classNames from 'classnames';
 
-import { ViewType } from './Contacts';
+import { ViewType } from '../enums/Enums';
 
 import '../styles/GridListToggle.scss';
 

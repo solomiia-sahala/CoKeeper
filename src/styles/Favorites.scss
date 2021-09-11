@@ -1,9 +1,0 @@
-@import "variables.scss";
-
-.grid-setting {
-    display: grid;
-    grid-template-columns: 70% 15% 15%;
-    @include for-mobile {
-        grid-template-columns: 70% 20% 10%;
-    }
-}
