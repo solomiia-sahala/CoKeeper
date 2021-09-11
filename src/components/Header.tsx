@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <header className={classNames(classNameHeader)}>
             <div className="header-container">
-                <div>
+                <div className="logo-container">
                     <a href="/" className="logo">
                         <picture>
                             <source media="(min-width: 768px)" srcSet={logoDesktop} />

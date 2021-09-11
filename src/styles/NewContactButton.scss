@@ -7,14 +7,13 @@
 
     .desktop {
       cursor: pointer;
-      font-size: $font-size-s-desktop;
+      font-size: 1.5vw;
       height: 54px;
       width: 95%;
       background-color: $bg-color-light;
       color: $dark-grey;
       border-radius: 30px;
       border: solid 1px $mint;
-      margin-top: 16px;
     }
 
     .mobile {
@@ -24,10 +23,12 @@
         width: 78px;
         border: 1px solid $light-green;
         border-radius: 50%;
+        z-index: 3;
+        left: 50%;
+        bottom: 0;
         position: fixed;
-        top: 96vh;
-        transform: translateY(-100%);
-        left: 44.5%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
 
         .text {
           display: none;

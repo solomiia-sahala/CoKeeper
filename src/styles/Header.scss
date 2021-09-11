@@ -4,12 +4,12 @@ header {
   background-color: #3aafa9;
 
   .header-container {
-    display: grid;
-    grid-template-columns: 40% 15% 15% 15% 15%;
-    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 90px;
     font-family: $title-font;
-    font-size: $font-size-m-desktop;
+    font-size: 2.1vw;
 
     @include for-mobile {
       font-size: $font-size-l-mobile;
@@ -17,8 +17,6 @@ header {
     }
 
     .contacts {
-      margin-top: 30px;
-
       img {
         display: none;
       }
@@ -27,9 +25,10 @@ header {
         width: 49.5%;
         height: 63px;
         background-color: $dark-green;
-        position: absolute;
+        position: fixed;
         bottom: 0;
-        border: 1px solid $bg-color-light;
+        left: 0;
+        z-index: 3;
 
         a {
           width: 100%;
@@ -41,9 +40,8 @@ header {
 
           img {
             display: block;
-            position: absolute;
-            top: 30%;
-            left: 50%;
+            margin: auto;
+            padding-top: 15px;
           }
         }
       }
@@ -59,16 +57,17 @@ header {
       padding-bottom: 5px;
     }
 
-    .logo {
-      img {
-        height: 60px;
-        margin: 10px 20px;
+    .logo-container {
+      flex: 0.5;
+      .logo {
+        img {
+          height: 60px;
+          margin: 10px 20px;
+        }
       }
     }
 
     .favorites {
-      margin-top: 30px;
-
       img {
         display: none;
       }
@@ -76,10 +75,10 @@ header {
         width: 49.5%;
         height: 63px;
         background-color: $dark-green;
-        position: absolute;
+        position: fixed;
         bottom: 0px;
         right: 0;
-        border: 1px solid $bg-color-light;
+        z-index: 3;
 
         a {
           width: 100%;
@@ -90,19 +89,11 @@ header {
           }
           img {
             display: block;
-            position: absolute;
-            top: 30%;
-            left: 50%;
+            margin: auto;
+            padding-top: 15px;
           }
         }
       }
-    }
-
-    .import-csv {
-      float: right;
-      height: 60px;
-      width: 60px;
-      margin: 24px 20px;
     }
   }
 }

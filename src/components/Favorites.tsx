@@ -1,26 +1,18 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
 
-import ContactCard from './ContactCard';
-
-import '../styles/Favorites.scss';
+import CardsView from './CardsView';
+import { UserContact } from './Contacts';
 
 const Favorites = () => {
-    const [favoriteContacts, setFavoriteContacts] = useState<any[] | null>(null);
+    const [favoriteContacts, setFavoriteContacts] = useState<UserContact[] | null>(null);
 
     useEffect(() => {
         api.getAllFavorites().then(res => setFavoriteContacts(res));
     }, [])
 
     return (
-        <div className="contacts-container">
-            <div className="grid-setting">
-                <h3>Favorite contacts({favoriteContacts?.length})</h3>
-            </div>
-            <div className="grid-contacts-container">
-                {favoriteContacts?.map(user => <ContactCard key={user.id} userContact={user} />)}
-            </div>
-        </div >
+        <CardsView users={favoriteContacts} />
     )
 }
 
