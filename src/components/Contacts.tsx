@@ -25,7 +25,7 @@ const Contacts = () => {
     useEffect(() => {
         api.getAllContacts().then((result) => setUsers(result))
     }, [])
-
+  
     return (
         <CardsView users={users} />
     )

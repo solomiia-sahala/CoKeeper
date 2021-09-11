@@ -3,21 +3,20 @@
 .contacts-container {
   min-height: 76vh;
   position: relative;
-  .header-contacts {
-    margin-left: 30px;
-  }
-  .sorting-menu {
-    position: absolute;
-    top: 0;
-    right: 161px;
-    @include for-mobile {
-      right: 65px;
-      top: -10px;
+
+  .flex-container {
+    display: flex;
+    align-items: center;
+    h3 {
+      margin-left: 5px;
+      flex: 1;
     }
   }
   .grid-contacts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: 10px;
 
     @include for-mobile {
       grid-template-columns: repeat(2, 1fr);
