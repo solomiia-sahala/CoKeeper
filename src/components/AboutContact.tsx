@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
+import api from '../services/api';
 
 import SocialIcon from './SocialIcon';
 import Button from './Button';
-
-import api from '../services/api';
+import FavoriteIcon from "./FavoriteIcon";
+import { noImage } from "./ContactCard";
 
 import '../styles/AboutContact.scss';
-import FavoriteIcon from "./FavoriteIcon";
 
 interface Id {
     id?: string;
@@ -68,7 +68,7 @@ const AboutContact = () => {
             </div>
             <div className="about-contact">
                 <div className="avatar">
-                    <img src={avatar} alt="contact avatar" />
+                    <img src={avatar ? avatar : noImage} alt="contact avatar" />
                 </div>
                 <div className="detail-info">
                     <h1>{nameSurname}</h1>

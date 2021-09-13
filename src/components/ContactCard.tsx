@@ -20,7 +20,7 @@ interface UserContactProps {
     }
 }
 
-const noImage = '/images/notfound.png';
+export const noImage = '/images/notfound.png';
 
 const ContactCard = ({ userContact }: UserContactProps) => {
     const history = useHistory();

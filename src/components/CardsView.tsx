@@ -10,6 +10,8 @@ import { UserContact } from './Contacts';
 import { SortOptions } from '../enums/Enums';
 import { ViewType } from '../enums/Enums';
 
+let currentPath = window.location.pathname;
+
 const CardsView = ({ users }: { users: UserContact[] | null }) => {
     const [contacts, setContacts] = useState<UserContact[] | null>(users);
     const [filteredUsers, setFilteredUsers] = useState<UserContact[] | null>(null);
@@ -49,7 +51,10 @@ const CardsView = ({ users }: { users: UserContact[] | null }) => {
             <Search callback={getSearchParam} />
             <div className="contacts-container">
                 <div className="flex-container">
-                    <h3 className="header-contacts">Favorite contacts {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}</h3>
+                    <h3 className="header-contacts">
+                        {currentPath === '/' ? 'All contacts' : 'Favorites'}
+                        {!!checkFilteredUsers?.length && `(${checkFilteredUsers.length})`}
+                    </h3>
                     <div className="sorting-menu">
                         <SortingMenu callback={setSortOption} />
                     </div>
