@@ -168,6 +168,8 @@ div {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       width: 100vw;
+      position: fixed;
+      bottom: 0;
     }
   }
   .button-container {
