@@ -1,11 +1,11 @@
 //colors
-$mint: #3AAFA9;
-$dark-green: #2B7A78;
-$light-green: #DEF2F1;
-$bg-color-light: #FEFFFF;
-$dark-grey: #17252A;
+$mint: #3aafa9;
+$dark-green: #2b7a78;
+$light-green: #def2f1;
+$bg-color-light: #feffff;
+$dark-grey: #17252a;
 $grey: #585858;
-$light-grey: #D2D2D2;
+$light-grey: #d2d2d2;
 $dove-gray: #6a6a6a;
 
 //fonts
@@ -28,6 +28,12 @@ $font-size-l-desktop: 36px;
 
 @mixin for-mobile {
   @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin for-large-screen {
+  @media screen and (min-width: 1200px) {
     @content;
   }
 }
