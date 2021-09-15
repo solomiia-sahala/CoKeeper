@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
+import * as Papa from 'papaparse';
 import api from '../services/api';
 
 import SocialIcon from './SocialIcon';
@@ -60,6 +61,16 @@ const AboutContact = () => {
         history.push(`/editContact/${id}`);
     }
 
+    const exportCSV = () => {
+        const csv = Papa.unparse([userData!]);
+        const blob = new Blob([csv]);
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = `contact_${id}.csv`;
+        a.click();
+    }
+
     const mobileNum = mobile?.toString();
     return (
         <div>
@@ -93,8 +104,8 @@ const AboutContact = () => {
                     </div>
                     <div className="export-svg">
                         <h3>Export to CSV</h3>
-                        <img className="desktop-export" src='/images/exportCSV.svg' alt="SVG export" />
-                        <img className="mobile-export" src='/images/export-icon.svg' alt="SVG export" />
+                        <img className="desktop-export" src='/images/exportCSV.svg' alt="SVG export" onClick={exportCSV} />
+                        <img className="mobile-export" src='/images/export-icon.svg' alt="SVG export" onClick={exportCSV} />
                     </div>
                 </div>
                 <div className="fav">
