@@ -82,6 +82,9 @@
       }
     }
     .export-svg {
+      img {
+        cursor: pointer;
+      }
       @include for-desktop {
         position: absolute;
         top: 300px;
