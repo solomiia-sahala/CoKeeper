@@ -9,6 +9,7 @@ div {
     grid-template-columns: 33% 3% 29% 12%;
     margin: auto;
     margin-bottom: 15px;
+    font-size: 0.9vw;
     div {
       margin: auto;
     }
@@ -32,16 +33,14 @@ div {
       height: 155px;
     }
     .list-avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       img {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        margin-left: 10px;
         margin: 2px 4px;
-        @include for-mobile {
-          margin-left: 70px;
-          margin-top: 25px;
-        }
       }
     }
     .list-grid-details {
@@ -50,7 +49,11 @@ div {
       align-items: center;
       position: relative;
       @include for-mobile {
-        display: block;
+        display: flex;
+        font-size: 2.8vw;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
       }
       div {
         @include for-mobile {
@@ -59,9 +62,12 @@ div {
       }
 
       .list-name-surname {
-        font-size: $font-size-m-desktop;
+        font-size: $font-size-s-desktop;
         font-weight: 600;
         padding: 9px 0;
+        @include for-mobile {
+          font-size: 3.4vw;
+        }
       }
       .list-favorite {
         position: absolute;
